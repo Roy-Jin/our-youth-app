@@ -1,0 +1,13 @@
+{
+    "current": 1,
+    "backup": [
+        {
+            "version": 0,
+            "path": "/data/v0.json"
+        },
+        {
+            "version": 1,
+            "path": "/data/v1.json"
+        }
+    ]
+}
