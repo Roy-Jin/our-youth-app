@@ -1,5 +1,5 @@
 {
-    "current": 2,
+    "current": 3,
     "backup": [
         {
             "version": 0,
@@ -12,6 +12,10 @@
         {
             "version": 2,
             "path": "/data/v2.json"
+        },
+        {
+            "version": 3,
+            "path": "/data/v3.json"
         }
     ]
 }
