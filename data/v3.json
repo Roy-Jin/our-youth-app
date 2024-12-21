@@ -83,7 +83,8 @@
                     "text": "在线终端程序，可以进行简单的命令行操作，可以玩玩看~",
                     "version": "(网络更新)",
                     "href": "./views/products/WebView.html?full=1&url=https://jsterm.pages.dev/",
-                    "notTitle": true
+                    "notTitle": true,
+                    "inactive": true
                 },
                 {
                     "title": "Peer 聊天室",
