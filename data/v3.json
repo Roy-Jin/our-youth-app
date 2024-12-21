@@ -2,7 +2,7 @@
     "name": "数据信息",
     "version": 3,
     "description": "由于数据信息量大,App端先拉取\"data_version.json\"文件,获取数据版本号,再拉取此文件,获取具体数据.",
-    "date": "首次发布",
+    "date": "添加了jsterm",
     "detail": {
         "homePage": {
             "welcomeTexts": [
@@ -76,6 +76,13 @@
                     "text": "一个轻量级的在线白板程序，可以进行在线绘图、标注等操作",
                     "version": "(网络更新)",
                     "href": "./views/products/WebView.html?full=1&url=https://ryboard.pages.dev/",
+                    "notTitle": true
+                },
+                {
+                    "title": "JSTERM",
+                    "text": "在线终端程序，可以进行简单的命令行操作，可以玩玩看~",
+                    "version": "(网络更新)",
+                    "href": "./views/products/WebView.html?full=1&url=https://jsterm.pages.dev/",
                     "notTitle": true
                 },
                 {
