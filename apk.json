@@ -30,5 +30,13 @@
         "description": "小小的内测版更新罢了~",
         "log": "- 添加代理设置\n- 打包时配置了PUSH模块\n§(*￣▽￣*)§",
         "download": "OurYouth V2.3.2测试.APK"
+    },
+    {
+        "code": "233",
+        "status": "beta",
+        "date": "2024-12-22",
+        "description": "又一个小小的更新~",
+        "log": "- 优化了更新机制\n- 完善了相关介绍\n- 优化了UI细节\n(●'◡'●)",
+        "download": "OurYouth V2.3.3测试.APK"
     }
 ]
