@@ -38,5 +38,13 @@
         "description": "又一个小小的更新~",
         "log": "- 优化了更新机制\n- 完善了相关介绍\n- 优化了UI细节\n(●'◡'●)",
         "download": "OurYouth V2.3.3测试.APK"
+    },
+    {
+        "code": "234",
+        "status": "beta",
+        "date": "2024-12-28",
+        "description": "新的一轮更新~",
+        "log": "- 优化APP启动速度\n- 修复了收藏页面延迟问题\n- 登录页面退出时刷新逻辑\n- 添加并优化页面通信机制\n§(*￣▽￣*)§",
+        "download": "OurYouth V2.3.4测试.APK"
     }
 ]
