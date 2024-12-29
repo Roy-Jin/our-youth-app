@@ -46,5 +46,13 @@
         "description": "新的一轮更新~",
         "log": "- 优化APP启动速度\n- 修复了收藏页面延迟问题\n- 登录页面退出时刷新逻辑\n- 添加并优化页面通信机制\n§(*￣▽￣*)§",
         "download": "OurYouth V2.3.4测试.APK"
+    },
+    {
+        "code": "240",
+        "status": "beta",
+        "date": "2024-12-29",
+        "description": "新的图标&名称更新~",
+        "log": "- 将APP图标更换为新版\n- APP名称更换为“我们的青春”\n\nψ(._. )>",
+        "download": "OurYouth V2.4.0测试.APK"
     }
 ]
