@@ -54,5 +54,13 @@
         "description": "新的图标&名称更新~",
         "log": "- 将APP图标更换为新版\n- APP名称更换为“我们的青春”\n\nψ(._. )>",
         "download": "OurYouth V2.4.0测试.APK"
+    },
+    {
+        "code": "241",
+        "status": "stable",
+        "date": "2024-12-29",
+        "description": "稳定版更新~",
+        "log": "- 紧急修复通信机制更新\n- APP各项功能优化\n(●'◡'●)",
+        "download": "OurYouth V2.4.1稳定.APK"
     }
 ]
