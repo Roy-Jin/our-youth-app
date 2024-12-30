@@ -1,0 +1,32 @@
+{
+    "data": {
+        "current": 3,
+        "backup": [
+            {
+                "version": 0,
+                "path": "/data/v0.json"
+            },
+            {
+                "version": 1,
+                "path": "/data/v1.json"
+            },
+            {
+                "version": 2,
+                "path": "/data/v2.json"
+            },
+            {
+                "version": 3,
+                "path": "/data/v3.json"
+            }
+        ]
+    },
+    "info": {
+        "current": 0,
+        "backup": [
+            {
+                "version": 0,
+                "path": "/info/v0.json"
+            }
+        ]
+    }
+}
