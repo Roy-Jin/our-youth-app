@@ -62,5 +62,13 @@
         "description": "稳定版更新~",
         "log": "- 紧急修复通信机制更新\n- APP各项功能优化\n(●'◡'●)",
         "download": "OurYouth V2.4.1稳定.APK"
+    },
+    {
+        "code": "242",
+        "status": "beta",
+        "date": "2024-12-31",
+        "description": "可以在线信息更新了~",
+        "log": "- 网络更新信息实现\n- 优化UI细节\n- 修复已知问题\nψ(._. )>",
+        "download": "OurYouth V2.4.2测试.APK"
     }
 ]

@@ -1,6 +1,6 @@
 {
     "data": {
-        "current": 3,
+        "current": 4,
         "backup": [
             {
                 "version": 0,
@@ -17,6 +17,10 @@
             {
                 "version": 3,
                 "path": "/data/v3.json"
+            },
+            {
+                "version": 4,
+                "path": "/data/v4.json"
             }
         ]
     },
