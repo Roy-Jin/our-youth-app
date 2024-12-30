@@ -70,5 +70,13 @@
         "description": "可以在线信息更新了~",
         "log": "- 网络更新信息实现\n- 优化UI细节\n- 修复已知问题\nψ(._. )>",
         "download": "OurYouth V2.4.2测试.APK"
+    },
+    {
+        "code": "243",
+        "status": "stable",
+        "date": "2024-12-31",
+        "description": "稳定版更新~",
+        "log": "- 修复APP启动问题\n- APP名换为“我们青春”\n- 稳定性优化\no(*////▽////*)q",
+        "download": "OurYouth V2.4.3稳定.APK"
     }
 ]
