@@ -21,11 +21,15 @@
         ]
     },
     "info": {
-        "current": 0,
+        "current": 1,
         "backup": [
             {
                 "version": 0,
                 "path": "/info/v0.json"
+            },
+            {
+                "version": 1,
+                "path": "/info/v1.json"
             }
         ]
     }
