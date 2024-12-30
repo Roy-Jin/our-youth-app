@@ -1,6 +1,6 @@
 {
     "name": "信息",
-    "version": 1,
+    "version": 0,
     "description": "由于数据信息量大,App端先拉取\"versions.json\"文件,获取数据版本号,再拉取此文件,获取具体数据.",
     "date": "首次发布",
     "detail": {
