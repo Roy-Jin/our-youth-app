@@ -1,0 +1,1635 @@
+{
+    "name": "信息",
+    "version": 3,
+    "description": "由于数据信息量大,App端先拉取\"versions.json\"文件,获取数据版本号,再拉取此文件,获取具体数据.",
+    "date": "首次发布",
+    "detail": {
+        "user": {
+            "students": [
+                {
+                    "alias": [
+                        "zww",
+                        "ZengWenWen"
+                    ],
+                    "avatar": "http://q.qlogo.cn/headimg_dl?dst_uin=2305344245&spec=640",
+                    "birth": "二〇〇六年五月廿七",
+                    "contact": [
+                        {
+                            "invoke": "$INVOKES.qq",
+                            "title": "QQ",
+                            "value": "2305344245"
+                        }
+                    ],
+                    "gender": 0,
+                    "id": 222001,
+                    "name": "曾文雯",
+                    "password": "zww2220",
+                    "tags": [
+                        "学生",
+                        "团支书"
+                    ]
+                },
+                {
+                    "alias": [
+                        "lhx",
+                        "LuoHunXuan"
+                    ],
+                    "birth": "二〇〇六年五月廿三",
+                    "gender": 0,
+                    "id": 222002,
+                    "name": "罗会璇",
+                    "password": "lhx2220",
+                    "tags": [
+                        "学生",
+                        "艺术生",
+                        "美术"
+                    ]
+                },
+                {
+                    "alias": [
+                        "cjx",
+                        "ChenJiaXiang"
+                    ],
+                    "gender": 1,
+                    "id": 222003,
+                    "name": "陈家翔",
+                    "password": "cjx2220",
+                    "tags": [
+                        "学生",
+                        "体育生"
+                    ]
+                },
+                {
+                    "alias": [
+                        "csj",
+                        "ChenSiJun",
+                        "鸡"
+                    ],
+                    "avatar": "http://q.qlogo.cn/headimg_dl?dst_uin=1703069665&spec=640",
+                    "birth": "2007年10月1日",
+                    "contact": [
+                        {
+                            "invoke": "$INVOKES.qq",
+                            "title": "QQ",
+                            "value": "1703069665"
+                        }
+                    ],
+                    "gender": 0,
+                    "id": 222004,
+                    "name": "陈斯俊",
+                    "password": "csj2220",
+                    "tags": [
+                        "学生",
+                        "英语课代表"
+                    ]
+                },
+                {
+                    "alias": [
+                        "czh",
+                        "ChenZiHao",
+                        "卡卡"
+                    ],
+                    "avatar": "http://q.qlogo.cn/headimg_dl?dst_uin=1467182877&spec=640",
+                    "birth": "二〇〇六年九月十八",
+                    "contact":[
+                        {
+                            "invoke": "$INVOKES.qq",
+                            "title": "QQ",
+                            "value": "1467182877"
+                        }
+                    ],
+                    "gender": 1,
+                    "id": 222005,
+                    "name": "陈子豪",
+                    "password": "czh2220",
+                    "tags": [
+                        "学生"
+                    ]
+                },
+                {
+                    "alias": [
+                        "dyn",
+                        "DaiYuNa"
+                    ],
+                    "birth": "2007年8月2日",
+                    "gender": 0,
+                    "id": 222006,
+                    "name": "戴玉娜",
+                    "password": "dyn2220",
+                    "tags": [
+                        "学生"
+                    ]
+                },
+                {
+                    "alias": [
+                        "dhz",
+                        "DongHanZe",
+                        "皇上"
+                    ],
+                    "birth": "2006年12月3日",
+                    "gender": 1,
+                    "id": 222007,
+                    "name": "董汉泽",
+                    "password": "dhz2220",
+                    "tags": [
+                        "学生",
+                        "体育生"
+                    ]
+                },
+                {
+                    "alias": [
+                        "fdw",
+                        "FanDaWei",
+                        "大为",
+                        "大维"
+                    ],
+                    "gender": 1,
+                    "id": 222008,
+                    "name": "范大为",
+                    "password": "fdw2220",
+                    "tags": [
+                        "学生",
+                        "艺术生",
+                        "音乐"
+                    ]
+                },
+                {
+                    "alias": [
+                        "fyc",
+                        "FengYouCong"
+                    ],
+                    "birth": "二〇〇六年二月廿五",
+                    "contact": [
+                        {
+                            "invoke": "$INVOKES.qq",
+                            "title": "QQ",
+                            "value": "2607613157"
+                        },
+                        {
+                            "invoke": "$INVOKES.wx",
+                            "title": "微信",
+                            "value": "f200602250324"
+                        }
+                    ],
+                    "gender": 1,
+                    "id": 222009,
+                    "name": "冯有聪",
+                    "password": "fyc2220",
+                    "tags": [
+                        "学生",
+                        "副班长"
+                    ]
+                },
+                {
+                    "alias": [
+                        "fy",
+                        "FengYuan"
+                    ],
+                    "gender": 1,
+                    "id": 222010,
+                    "name": "冯垣",
+                    "password": "fy2220",
+                    "tags": [
+                        "学生",
+                        "体育委员",
+                        "体育生"
+                    ]
+                },
+                {
+                    "alias": [
+                        "gmx",
+                        "GanMengXue"
+                    ],
+                    "avatar": "http://q.qlogo.cn/headimg_dl?dst_uin=2102889068&spec=640",
+                    "birth": "二〇〇七年九月初二",
+                    "contact": [
+                        {
+                            "invoke": "$INVOKES.qq",
+                            "title": "QQ",
+                            "value": "2102889068"
+                        }
+                    ],
+                    "gender": 0,
+                    "id": 222011,
+                    "name": "干梦雪",
+                    "password": "gmx2220",
+                    "tags": [
+                        "学生"
+                    ]
+                },
+                {
+                    "alias": [
+                        "glc",
+                        "GongLingCong"
+                    ],
+                    "avatar": "http://q.qlogo.cn/headimg_dl?dst_uin=1515730684&spec=640",
+                    "birth": "2008年1月20日",
+                    "contact": [
+                        {
+                            "invoke": "$INVOKES.qq",
+                            "title": "QQ",
+                            "value": "1515730684"
+                        }
+                    ],
+                    "gender": 1,
+                    "id": 222012,
+                    "name": "龚凌聪",
+                    "password": "glc2220",
+                    "tags": [
+                        "学生"
+                    ]
+                },
+                {
+                    "alias": [
+                        "hzt",
+                        "HeZhenTao"
+                    ],
+                    "birth": "二〇〇七年四月廿六",
+                    "gender": 1,
+                    "id": 222013,
+                    "name": "何振涛",
+                    "password": "hzt2220",
+                    "tags": [
+                        "学生"
+                    ]
+                },
+                {
+                    "alias": [
+                        "hr",
+                        "HongRui"
+                    ],
+                    "gender": 1,
+                    "id": 222014,
+                    "name": "洪瑞",
+                    "password": "hr2220",
+                    "tags": [
+                        "学生"
+                    ]
+                },
+                {
+                    "alias": [
+                        "hj",
+                        "HuJun"
+                    ],
+                    "birth": "2005年9月30日",
+                    "gender": 1,
+                    "id": 222015,
+                    "name": "胡俊",
+                    "password": "hj2220",
+                    "tags": [
+                        "学生"
+                    ]
+                },
+                {
+                    "alias": [
+                        "hqj",
+                        "HuaQiJun"
+                    ],
+                    "gender": 1,
+                    "id": 222016,
+                    "name": "胡启俊",
+                    "password": "hqj2220",
+                    "tags": [
+                        "学生",
+                        "地理课代表"
+                    ]
+                },
+                {
+                    "alias": [
+                        "hhw",
+                        "HuangHaoWen"
+                    ],
+                    "birth": "二〇〇七年大年初八",
+                    "gender": 0,
+                    "id": 222017,
+                    "name": "黄浩文",
+                    "password": "hhw2220",
+                    "tags": [
+                        "学生"
+                    ]
+                },
+                {
+                    "alias": [
+                        "hsq",
+                        "HuangSiQian"
+                    ],
+                    "avatar": "http://q.qlogo.cn/headimg_dl?dst_uin=3220233579&spec=640",
+                    "birth": "二〇〇六年九月初二",
+                    "contact": [
+                        {
+                            "invoke": "$INVOKES.qq",
+                            "title": "QQ",
+                            "value": "3220233579"
+                        }
+                    ],
+                    "gender": 1,
+                    "id": 222018,
+                    "name": "黄思纤",
+                    "password": "hsq2220",
+                    "tags": [
+                        "学生",
+                        "劳动委员",
+                        "体育生"
+                    ]
+                },
+                {
+                    "alias": [
+                        "ht",
+                        "YellowStop",
+                        "HuangTing"
+                    ],
+                    "avatar": "http://q.qlogo.cn/headimg_dl?dst_uin=3245497037&spec=640",
+                    "birth": "二〇〇七年九月初三",
+                    "contact": [
+                        {
+                            "invoke": "$INVOKES.qq",
+                            "title": "QQ",
+                            "value": "3245497037"
+                        }
+                    ],
+                    "gender": 0,
+                    "id": 222019,
+                    "name": "黄婷",
+                    "password": "ht2220",
+                    "tags": [
+                        "学生",
+                        "班长"
+                    ]
+                },
+                {
+                    "alias": [
+                        "hx",
+                        "HuangXuan"
+                    ],
+                    "birth": "二〇〇七年六月廿三",
+                    "gender": 0,
+                    "id": 222020,
+                    "name": "黄轩",
+                    "password": "hx2220",
+                    "tags": [
+                        "学生",
+                        "心理委员"
+                    ]
+                },
+                {
+                    "alias": [
+                        "hyx",
+                        "HuangYaXuan"
+                    ],
+                    "birth": "2007年10月26日",
+                    "gender": 0,
+                    "id": 222021,
+                    "name": "黄雅萱",
+                    "password": "hyx2220",
+                    "tags": [
+                        "学生"
+                    ]
+                },
+                {
+                    "alias": [
+                        "rzy",
+                        "RaoZhanYan"
+                    ],
+                    "birth": "二〇〇八年十二月廿七",
+                    "gender": 0,
+                    "id": 222022,
+                    "name": "饶展颜",
+                    "password": "rzy2220",
+                    "tags": [
+                        "学生"
+                    ]
+                },
+                {
+                    "alias": [
+                        "jyy",
+                        "JiangYuYang"
+                    ],
+                    "birth": "2006年8月13日",
+                    "gender": 1,
+                    "id": 222023,
+                    "name": "江于扬",
+                    "password": "jyy2220",
+                    "tags": [
+                        "学生",
+                        "生活委员",
+                        "体育生"
+                    ]
+                },
+                {
+                    "alias": [
+                        "lhz",
+                        "LiHanZhao"
+                    ],
+                    "gender": 1,
+                    "id": 222024,
+                    "name": "李汉钊",
+                    "password": "lhz2220",
+                    "tags": [
+                        "学生"
+                    ]
+                },
+                {
+                    "alias": [
+                        "lj",
+                        "LiJin",
+                        "里脊肉"
+                    ],
+                    "birth": "二〇〇七年二月廿五",
+                    "gender": 0,
+                    "id": 222025,
+                    "name": "李锦",
+                    "password": "lj2220",
+                    "tags": [
+                        "学生",
+                        "政治课代表"
+                    ]
+                },
+                {
+                    "alias": [
+                        "ly",
+                        "LiYan"
+                    ],
+                    "avatar": "http://q.qlogo.cn/headimg_dl?dst_uin=3020433977&spec=640",
+                    "birth": "二〇〇七年冬月初二",
+                    "contact": [
+                        {
+                            "invoke": "$INVOKES.qq",
+                            "title": "QQ",
+                            "value": "3020433977"
+                        }
+                    ],
+                    "gender": 1,
+                    "id": 222026,
+                    "name": "李炎",
+                    "password": "ly2220",
+                    "tags": [
+                        "学生"
+                    ]
+                },
+                {
+                    "alias": [
+                        "ly",
+                        "LiYi"
+                    ],
+                    "birth": "二〇〇七年冬月十八",
+                    "gender": 0,
+                    "id": 222027,
+                    "name": "李椅",
+                    "password": "ly2220",
+                    "tags": [
+                        "学生"
+                    ]
+                },
+                {
+                    "alias": [
+                        "lxn",
+                        "LinXueNan"
+                    ],
+                    "birth": "2006年9月15日",
+                    "gender": 1,
+                    "id": 222028,
+                    "name": "凌学楠",
+                    "password": "lxn2220",
+                    "tags": [
+                        "学生",
+                        "心理委员",
+                        "体育生"
+                    ]
+                },
+                {
+                    "alias": [
+                        "lxr",
+                        "LiuXinRui"
+                    ],
+                    "birth": "2007年10月11日",
+                    "gender": 1,
+                    "id": 222029,
+                    "name": "刘馨润",
+                    "password": "lxr2220",
+                    "tags": [
+                        "学生",
+                        "体育生"
+                    ]
+                },
+                {
+                    "alias": [
+                        "lbg",
+                        "LvBangGuo"
+                    ],
+                    "avatar": "http://q.qlogo.cn/headimg_dl?dst_uin=1719936101&spec=640",
+                    "birth": "二〇〇六年三月初八",
+                    "contact": [
+                        {
+                            "invoke": "$INVOKES.qq",
+                            "title": "QQ",
+                            "value": "1719936101"
+                        }
+                    ],
+                    "gender": 1,
+                    "id": 222030,
+                    "name": "吕邦国",
+                    "password": "lbg2220",
+                    "tags": [
+                        "学生"
+                    ]
+                },
+                {
+                    "alias": [
+                        "ljc",
+                        "LuJunChao"
+                    ],
+                    "birth": "二〇〇七年·七夕节",
+                    "gender": 1,
+                    "id": 222031,
+                    "name": "卢俊超",
+                    "password": "ljc2220",
+                    "tags": [
+                        "学生",
+                        "体育生"
+                    ]
+                },
+                {
+                    "alias": [
+                        "lmt",
+                        "LuoMingTao",
+                        "海狸"
+                    ],
+                    "avatar": "http://q.qlogo.cn/headimg_dl?dst_uin=3328599114&spec=640",
+                    "birth": "二〇〇六年九月廿四",
+                    "contact": [
+                        {
+                            "invoke": "$INVOKES.qq",
+                            "title": "QQ",
+                            "value": "3328599114"
+                        }
+                    ],
+                    "gender": 0,
+                    "id": 222032,
+                    "name": "罗明涛",
+                    "password": "lmt2220",
+                    "tags": [
+                        "学生"
+                    ]
+                },
+                {
+                    "alias": [
+                        "mc",
+                        "MaCong"
+                    ],
+                    "birth": "二〇〇六年八月十六",
+                    "gender": 1,
+                    "id": 222033,
+                    "name": "马聪",
+                    "password": "mc2220",
+                    "tags": [
+                        "学生",
+                        "体育生"
+                    ]
+                },
+                {
+                    "alias": [
+                        "mjk",
+                        "MeiJunKai"
+                    ],
+                    "avatar": "http://q.qlogo.cn/headimg_dl?dst_uin=365499950&spec=640",
+                    "birth": "2005年4月17日",
+                    "contact": [
+                        {
+                            "invoke": "$INVOKES.qq",
+                            "title": "QQ",
+                            "value": "365499950"
+                        }
+                    ],
+                    "gender": 1,
+                    "id": 222034,
+                    "name": "梅峻恺",
+                    "password": "mjk2220",
+                    "tags": [
+                        "学生",
+                        "历史课代表"
+                    ]
+                },
+                {
+                    "alias": [
+                        "nwc",
+                        "NinWanCheng",
+                        "龙哥"
+                    ],
+                    "birth": "2007年7月20日",
+                    "gender": 1,
+                    "id": 222035,
+                    "name": "倪万成",
+                    "password": "nwc2220",
+                    "tags": [
+                        "学生",
+                        "体育生"
+                    ]
+                },
+                {
+                    "alias": [
+                        "syj",
+                        "ShenYongJie",
+                        "葱哥",
+                        "聪哥"
+                    ],
+                    "birth": "2007年6月10日",
+                    "gender": 1,
+                    "id": 222036,
+                    "name": "沈永杰",
+                    "password": "syj2220",
+                    "tags": [
+                        "学生",
+                        "体育生",
+                        "学生会长"
+                    ]
+                },
+                {
+                    "alias": [
+                        "ssy",
+                        "ShuaiShuYu",
+                        "小帅"
+                    ],
+                    "avatar": "http://q.qlogo.cn/headimg_dl?dst_uin=409352359&spec=640",
+                    "birth": "2006年12月31日",
+                    "contact": [
+                        {
+                            "invoke": "$INVOKES.qq",
+                            "title": "QQ",
+                            "value": "409352359"
+                        }
+                    ],
+                    "gender": 1,
+                    "id": 222037,
+                    "name": "帅书宇",
+                    "password": "ssy2220",
+                    "tags": [
+                        "学生"
+                    ]
+                },
+                {
+                    "alias": [
+                        "szh",
+                        "SuZiHui"
+                    ],
+                    "avatar": "http://q.qlogo.cn/headimg_dl?dst_uin=1523764122&spec=640",
+                    "contact": [
+                        {
+                            "invoke": "$INVOKES.qq",
+                            "title": "QQ",
+                            "value": "1523764122"
+                        }
+                    ],
+                    "gender": 0,
+                    "id": 222038,
+                    "name": "苏子惠",
+                    "password": "szh2220",
+                    "tags": [
+                        "学生",
+                        "艺术生",
+                        "舞蹈"
+                    ]
+                },
+                {
+                    "alias": [
+                        "tzh",
+                        "TangZiHeng"
+                    ],
+                    "birth": "2007年9月13日",
+                    "gender": 1,
+                    "id": 222039,
+                    "name": "汤子恒",
+                    "password": "tzh2220",
+                    "tags": [
+                        "学生"
+                    ]
+                },
+                {
+                    "alias": [
+                        "wjq",
+                        "WangJiaQuan",
+                        "甲醛"
+                    ],
+                    "avatar": "http://q.qlogo.cn/headimg_dl?dst_uin=2798472752&spec=640",
+                    "birth": "二〇〇六年正月三十",
+                    "contact": [
+                        {
+                            "invoke": "$INVOKES.qq",
+                            "title": "QQ",
+                            "value": "2798472752"
+                        }
+                    ],
+                    "gender": 1,
+                    "id": 222040,
+                    "name": "王家权",
+                    "password": "wjq2220",
+                    "tags": [
+                        "学生",
+                        "学习委员",
+                        "体育生"
+                    ]
+                },
+                {
+                    "alias": [
+                        "wj",
+                        "Roy",
+                        "WangJin",
+                        "小学生"
+                    ],
+                    "avatar": "http://q.qlogo.cn/headimg_dl?dst_uin=724011786&spec=640",
+                    "birth": "二〇〇七年九月初四",
+                    "contact": [
+                        {
+                            "invoke": "$INVOKES.qq",
+                            "title": "QQ",
+                            "value": "724011786"
+                        }
+                    ],
+                    "gender": 1,
+                    "id": 222041,
+                    "name": "王晋",
+                    "password": "RoyJin769",
+                    "tags": [
+                        "学生",
+                        "英语课代表"
+                    ]
+                },
+                {
+                    "alias": [
+                        "wyx",
+                        "WangYongXuan"
+                    ],
+                    "avatar": "http://q.qlogo.cn/headimg_dl?dst_uin=2840650248&spec=640",
+                    "birth": "二〇〇七年九月廿",
+                    "contact": [
+                        {
+                            "invoke": "$INVOKES.qq",
+                            "title": "QQ",
+                            "value": "2840650248"
+                        }
+                    ],
+                    "gender": 1,
+                    "id": 222042,
+                    "name": "王永轩",
+                    "password": "wyx2220",
+                    "tags": [
+                        "学生"
+                    ]
+                },
+                {
+                    "alias": [
+                        "wzy",
+                        "WangZongYang"
+                    ],
+                    "birth": "二〇〇六年七月十六",
+                    "gender": 1,
+                    "id": 222043,
+                    "name": "王宗阳",
+                    "password": "wzy2220",
+                    "tags": [
+                        "学生",
+                        "历史课代表"
+                    ]
+                },
+                {
+                    "alias": [
+                        "wc",
+                        "WuChen"
+                    ],
+                    "birth": "2007年11月20日",
+                    "gender": 1,
+                    "id": 222044,
+                    "name": "吴辰",
+                    "password": "wc2220",
+                    "tags": [
+                        "学生"
+                    ]
+                },
+                {
+                    "alias": [
+                        "whm",
+                        "WuHongMei",
+                        "卡拉米"
+                    ],
+                    "avatar": "http://q.qlogo.cn/headimg_dl?dst_uin=2020009628&spec=640",
+                    "birth": "二〇〇七年梅月初六",
+                    "contact": [
+                        {
+                            "invoke": "$INVOKES.qq",
+                            "title": "QQ",
+                            "value": "2020009628"
+                        }
+                    ],
+                    "gender": 0,
+                    "id": 222045,
+                    "name": "吴红梅",
+                    "password": "whm2220",
+                    "tags": [
+                        "学生",
+                        "数学课代表"
+                    ]
+                },
+                {
+                    "alias": [
+                        "wjw",
+                        "WuJinWang",
+                        "校草"
+                    ],
+                    "birth": "二〇〇六年冬月初五",
+                    "contact": [
+                        {
+                            "invoke": "$INVOKES.qq",
+                            "title": "QQ",
+                            "value": "2788198793"
+                        }
+                    ],
+                    "gender": 1,
+                    "id": 222046,
+                    "name": "吴金旺",
+                    "password": "wjw2220",
+                    "tags": [
+                        "学生"
+                    ]
+                },
+                {
+                    "alias": [
+                        "wzc",
+                        "WuZhenChao"
+                    ],
+                    "birth": "二〇〇六年八月初五",
+                    "gender": 1,
+                    "id": 222047,
+                    "name": "吴正超",
+                    "password": "wzc2220",
+                    "tags": [
+                        "学生"
+                    ]
+                },
+                {
+                    "alias": [
+                        "xf",
+                        "XiaoFan"
+                    ],
+                    "birth": "2007年1月21日",
+                    "gender": 1,
+                    "id": 222048,
+                    "name": "肖凡",
+                    "password": "xf2220",
+                    "tags": [
+                        "学生"
+                    ]
+                },
+                {
+                    "alias": [
+                        "xxj",
+                        "XiongXiaoJie"
+                    ],
+                    "birth": "2006年8月17日",
+                    "gender": 1,
+                    "id": 222049,
+                    "name": "熊小杰",
+                    "password": "xxj2220",
+                    "tags": [
+                        "学生"
+                    ]
+                },
+                {
+                    "alias": [
+                        "xyp",
+                        "XiongYiPing"
+                    ],
+                    "birth": "2007年10月25日",
+                    "gender": 0,
+                    "id": 222050,
+                    "name": "熊艺萍",
+                    "password": "xyp2220",
+                    "tags": [
+                        "学生",
+                        "语文课代表"
+                    ]
+                },
+                {
+                    "alias": [
+                        "xyf",
+                        "XuYingFei"
+                    ],
+                    "birth": "二〇〇七年正月初六",
+                    "gender": 0,
+                    "id": 222051,
+                    "name": "徐莹菲",
+                    "password": "xyf2220",
+                    "tags": [
+                        "学生"
+                    ]
+                },
+                {
+                    "alias": [
+                        "yq",
+                        "YuQian"
+                    ],
+                    "avatar": "http://q.qlogo.cn/headimg_dl?dst_uin=1714472399&spec=640",
+                    "birth": "二〇〇七年冬月十一",
+                    "contact": [
+                        {
+                            "invoke": "$INVOKES.qq",
+                            "title": "QQ",
+                            "value": "1714472399"
+                        }
+                    ],
+                    "gender": 0,
+                    "id": 222052,
+                    "name": "于倩",
+                    "password": "yq2220",
+                    "tags": [
+                        "学生"
+                    ]
+                },
+                {
+                    "alias": [
+                        "yxy",
+                        "YuXiangYao"
+                    ],
+                    "avatar": "http://q.qlogo.cn/headimg_dl?dst_uin=2102033536&spec=640",
+                    "birth": "二〇〇六年十月十四",
+                    "contact": [
+                        {
+                            "invoke": "$INVOKES.qq",
+                            "title": "QQ",
+                            "value": "2102033536"
+                        }
+                    ],
+                    "gender": 0,
+                    "id": 222053,
+                    "name": "余相瑶",
+                    "password": "yxy2220",
+                    "tags": [
+                        "学生",
+                        "文艺委员"
+                    ]
+                },
+                {
+                    "alias": [
+                        "yb",
+                        "YueBin"
+                    ],
+                    "birth": "二〇〇五年九月廿三",
+                    "gender": 1,
+                    "id": 222054,
+                    "name": "岳彬",
+                    "password": "yb2220",
+                    "tags": [
+                        "学生",
+                        "体育生"
+                    ]
+                },
+                {
+                    "alias": [
+                        "zwb",
+                        "ZhaoWenBo"
+                    ],
+                    "birth": "2007年3月19日",
+                    "gender": 1,
+                    "id": 222055,
+                    "name": "赵文博",
+                    "password": "zwb2220",
+                    "tags": [
+                        "学生",
+                        "体育生"
+                    ]
+                },
+                {
+                    "alias": [
+                        "zyh",
+                        "LiYuHeng"
+                    ],
+                    "birth": "2006年2月28日",
+                    "gender": 1,
+                    "id": 222056,
+                    "name": "李雨恒",
+                    "password": "zyh2220",
+                    "tags": [
+                        "学生"
+                    ]
+                },
+                {
+                    "alias": [
+                        "zyj",
+                        "ZhaoYunJie"
+                    ],
+                    "avatar": "http://q.qlogo.cn/headimg_dl?dst_uin=3212138132&spec=640",
+                    "birth": "2006年9月4日",
+                    "contact": [
+                        {
+                            "invoke": "$INVOKES.qq",
+                            "title": "QQ",
+                            "value": "3212138132"
+                        }
+                    ],
+                    "gender": 1,
+                    "id": 222057,
+                    "name": "赵云杰",
+                    "password": "zyj2220",
+                    "tags": [
+                        "学生"
+                    ]
+                },
+                {
+                    "alias": [
+                        "zqb",
+                        "ZhouQiBo",
+                        "周波"
+                    ],
+                    "avatar":"http://q.qlogo.cn/headimg_dl?dst_uin=2502259441&spec=640",
+                    "birth": "二〇〇六年五月十二",
+                    "contact": [
+                        {
+                            "invoke": "$INVOKES.qq",
+                            "title": "QQ",
+                            "value": "2502259441"
+                        }
+                    ],
+                    "gender": 1,
+                    "id": 222058,
+                    "name": "周启波",
+                    "password": "zqb2220",
+                    "tags": [
+                        "学生"
+                    ]
+                },
+                {
+                    "alias": [
+                        "zmh",
+                        "ZhuMingHui"
+                    ],
+                    "birth": "二〇〇七年七月初十",
+                    "gender": 0,
+                    "id": 222059,
+                    "name": "朱铭慧",
+                    "password": "zmh2220",
+                    "tags": [
+                        "学生"
+                    ]
+                },
+                {
+                    "alias": [
+                        "xsz",
+                        "XiongSiZhe"
+                    ],
+                    "birth": "2007年5月20日",
+                    "gender": 1,
+                    "id": 222060,
+                    "name": "熊思哲",
+                    "password": "xsz2220",
+                    "tags": [
+                        "学生",
+                        "传媒生"
+                    ]
+                },
+                {
+                    "alias": [
+                        "clw",
+                        "ChenLiWen"
+                    ],
+                    "gender": 0,
+                    "id": 222061,
+                    "name": "陈丽雯",
+                    "password": "clw2220",
+                    "tags": [
+                        "学生",
+                        "艺术生",
+                        "舞蹈"
+                    ]
+                },
+                {
+                    "alias": [
+                        "xjh",
+                        "XuJinHao",
+                        "小黑",
+                        "老黑"
+                    ],
+                    "avatar": "http://q.qlogo.cn/headimg_dl?dst_uin=794387313&spec=640",
+                    "birth": "2007年8月23日",
+                    "contact": [
+                        {
+                            "invoke": "$INVOKES.qq",
+                            "title": "QQ",
+                            "value": "794387313"
+                        }
+                    ],
+                    "gender": 1,
+                    "id": 222062,
+                    "name": "徐锦昊",
+                    "password": "xjh2220",
+                    "tags": [
+                        "学生",
+                        "安全委员",
+                        "体育生"
+                    ]
+                },
+                {
+                    "alias": [
+                        "zhy",
+                        "ZhouHaiYun"
+                    ],
+                    "gender": 0,
+                    "id": 222063,
+                    "name": "周海雲",
+                    "password": "zhy2220",
+                    "tags": [
+                        "学生",
+                        "艺术生",
+                        "舞蹈"
+                    ]
+                },
+                {
+                    "alias": [
+                        "lmj",
+                        "LuoMengJuan"
+                    ],
+                    "gender": 0,
+                    "id": 222064,
+                    "name": "罗梦娟",
+                    "password": "lmj2220",
+                    "tags": [
+                        "学生",
+                        "艺术生",
+                        "音乐"
+                    ]
+                },
+                {
+                    "alias": [
+                        "lgs",
+                        "LvGuangSen"
+                    ],
+                    "gender": 1,
+                    "id": 222065,
+                    "name": "吕广森",
+                    "password": "lgs2220",
+                    "tags": [
+                        "学生",
+                        "艺术生",
+                        "舞蹈"
+                    ]
+                },
+                {
+                    "alias": [
+                        "tyl",
+                        "TaoYueLing"
+                    ],
+                    "gender": 0,
+                    "id": 222066,
+                    "name": "汤悦铃",
+                    "password": "tyl2220",
+                    "tags": [
+                        "学生",
+                        "艺术生",
+                        "舞蹈"
+                    ]
+                },
+                {
+                    "alias": [
+                        "hhy",
+                        "HuangHaoYan"
+                    ],
+                    "gender": 0,
+                    "id": 222067,
+                    "name": "黄昊妍",
+                    "password": "hhy2220",
+                    "tags": [
+                        "学生",
+                        "艺术生",
+                        "音乐"
+                    ]
+                },
+                {
+                    "alias": [
+                        "yxs",
+                        "YangXianShuai"
+                    ],
+                    "gender": 1,
+                    "id": 222068,
+                    "name": "杨显帅",
+                    "password": "yxs2220",
+                    "tags": [
+                        "学生",
+                        "体育生"
+                    ]
+                },
+                {
+                    "alias": [
+                        "lzh",
+                        "LiZhiHao"
+                    ],
+                    "gender": 1,
+                    "id": 222069,
+                    "name": "李子豪",
+                    "password": "lzh2220",
+                    "tags": [
+                        "学生",
+                        "体育生"
+                    ]
+                },
+                {
+                    "alias": [
+                        "yc",
+                        "YuanCong",
+                        "洋葱"
+                    ],
+                    "gender": 1,
+                    "id": 222070,
+                    "name": "袁聪",
+                    "password": "yc2220",
+                    "tags": [
+                        "学生",
+                        "体育生"
+                    ]
+                },
+                {
+                    "alias": [
+                        "wx",
+                        "WuXian"
+                    ],
+                    "gender": 1,
+                    "id": 222071,
+                    "name": "吴宪",
+                    "password": "wx2220",
+                    "tags": [
+                        "学生",
+                        "体育生"
+                    ]
+                },
+                {
+                    "alias": [
+                        "glj",
+                        "GanLeJia",
+                        "干辣椒"
+                    ],
+                    "gender": 1,
+                    "id": 222072,
+                    "name": "干乐佳",
+                    "password": "lyj2220",
+                    "tags": [
+                        "学生",
+                        "体育生"
+                    ]
+                },
+                {
+                    "alias": [
+                        "ljf",
+                        "LiuJinFeng"
+                    ],
+                    "gender": 1,
+                    "id": 222073,
+                    "name": "刘锦锋",
+                    "password": "ljf2220",
+                    "tags": [
+                        "学生"
+                    ]
+                },
+                {
+                    "alias": [
+                        "ytl",
+                        "YaoTianLei"
+                    ],
+                    "gender": 1,
+                    "id": 222074,
+                    "name": "尧天磊",
+                    "password": "ytl2220",
+                    "tags": [
+                        "学生",
+                        "体育生"
+                    ]
+                }
+            ],
+            "teachers": [
+                {
+                    "alias": [
+                        "dzg",
+                        "DengZhiGang",
+                        "老班",
+                        "小夫",
+                        "老师"
+                    ],
+                    "avatar": "../data/avatar/M.png",
+                    "contact": [
+                        {
+                            "invoke": "$INVOKES.phone",
+                            "title": "电话",
+                            "value": "13426587133"
+                        }
+                    ],
+                    "gender": 1,
+                    "id": 1,
+                    "name": "邓志刚",
+                    "password": "dzg2220",
+                    "tags": [
+                        "教师",
+                        "班主任"
+                    ]
+                },
+                {
+                    "alias": [
+                        "zys",
+                        "ZhangYouShi",
+                        "石头",
+                        "卤蛋"
+                    ],
+                    "avatar": "../data/avatar/M.png",
+                    "contact": [
+                        {
+                            "invoke": "$INVOKES.phone",
+                            "title": "电话",
+                            "value": "13755293178"
+                        }
+                    ],
+                    "gender": 1,
+                    "id": 2,
+                    "name": "张友石",
+                    "password": "zys2220",
+                    "tags": [
+                        "教师",
+                        "语文老师"
+                    ]
+                },
+                {
+                    "alias": [
+                        "djp",
+                        "DengAnQing"
+                    ],
+                    "avatar": "../data/avatar/M.png",
+                    "contact": [
+                        {
+                            "invoke": "$INVOKES.phone",
+                            "title": "电话",
+                            "value": "13879206619"
+                        }
+                    ],
+                    "gender": 1,
+                    "id": 3,
+                    "name": "邓安庆",
+                    "password": "djp2220",
+                    "tags": [
+                        "教师",
+                        "数学老师"
+                    ]
+                },
+                {
+                    "alias": [
+                        "wjz",
+                        "WanJuZhen"
+                    ],
+                    "avatar": "../data/avatar/W (1).png",
+                    "contact": [
+                        {
+                            "invoke": "$INVOKES.phone",
+                            "title": "电话",
+                            "value": "13979207309"
+                        }
+                    ],
+                    "gender": 0,
+                    "id": 4,
+                    "name": "万菊珍",
+                    "password": "wjz2220",
+                    "tags": [
+                        "教师",
+                        "英语老师"
+                    ]
+                },
+                {
+                    "alias": [
+                        "lxb",
+                        "LiXiaoBo"
+                    ],
+                    "avatar": "../data/avatar/M.png",
+                    "contact": [
+                        {
+                            "invoke": "$INVOKES.phone",
+                            "title": "电话",
+                            "value": "18770096781"
+                        }
+                    ],
+                    "gender": 1,
+                    "id": 5,
+                    "name": "李小波",
+                    "password": "lxb2220",
+                    "tags": [
+                        "教师",
+                        "政治老师"
+                    ]
+                },
+                {
+                    "alias": [
+                        "crr",
+                        "ChenRenRong"
+                    ],
+                    "avatar": "../data/avatar/W (2).png",
+                    "contact": [
+                        {
+                            "invoke": "$INVOKES.phone",
+                            "title": "电话",
+                            "value": "13507063713"
+                        }
+                    ],
+                    "gender": 0,
+                    "id": 6,
+                    "name": "陈仁荣",
+                    "password": "crr2220",
+                    "tags": [
+                        "教师",
+                        "历史老师"
+                    ]
+                },
+                {
+                    "alias": [
+                        "lj",
+                        "Jack",
+                        "LvJie"
+                    ],
+                    "avatar": "../data/avatar/M.png",
+                    "contact": [
+                        {
+                            "invoke": "$INVOKES.phone",
+                            "title": "电话",
+                            "value": "13755213498"
+                        }
+                    ],
+                    "gender": 1,
+                    "id": 7,
+                    "name": "吕杰",
+                    "password": "lj2220",
+                    "tags": [
+                        "教师",
+                        "地理老师"
+                    ]
+                },
+                {
+                    "alias": [
+                        "zjy",
+                        "CaiJianYing",
+                        "老蔡"
+                    ],
+                    "avatar": "../data/avatar/M.png",
+                    "gender": 1,
+                    "id": 8,
+                    "name": "蔡剑英",
+                    "password": "zjy2220",
+                    "tags": [
+                        "教师",
+                        "体育老师"
+                    ]
+                }
+            ]
+        },
+        "img": [
+            {
+                "about": [
+                    "陈子豪"
+                ],
+                "desc": "2023年5月，市长来访-创文活动",
+                "path": "[proxy]/AI/2023-5.jpeg"
+            },
+            {
+                "desc": "2024年3月，参加科普节系列活动-防震减灾科普馆",
+                "link": "https://mp.weixin.qq.com/s/q8ZQdR-30EnBeQzs-RrvHA",
+                "path": "[proxy]/AI/2024-3.jpeg",
+                "source": "微信公众号"
+            },
+            {
+                "desc": "运动会集体照",
+                "path": "[proxy]/YunDongHui-24.jpg"
+            },
+            {
+                "about": [
+                    "邓志刚",
+                    "王晋",
+                    "冯有聪",
+                    "凌学楠",
+                    "胡俊",
+                    "董汉泽",
+                    "赵云杰",
+                    "王家权",
+                    "岳彬",
+                    "何振涛",
+                    "洪瑞",
+                    "江于扬",
+                    "帅书宇",
+                    "周启波",
+                    "冯垣",
+                    "徐锦昊",
+                    "黄思纤",
+                    "卢俊超"
+                ],
+                "desc": "部分男生的师生合照-运动会期间（一）",
+                "path": "[proxy]/AI/ForUs (1).jpeg"
+            },
+            {
+                "about": [
+                    "董汉泽",
+                    "岳彬",
+                    "帅书宇",
+                    "徐锦昊",
+                    "黄思纤",
+                    "卢俊超",
+                    "冯垣",
+                    "凌学楠",
+                    "何振涛",
+                    "陈家翔"
+                ],
+                "desc": "部分男生的合照-运动会期间（一）",
+                "path": "[proxy]/AI/ForUs (3).jpeg"
+            },
+            {
+                "about": [
+                    "董汉泽",
+                    "岳彬",
+                    "帅书宇",
+                    "徐锦昊",
+                    "黄思纤",
+                    "卢俊超",
+                    "江于扬",
+                    "冯垣",
+                    "凌学楠"
+                ],
+                "desc": "部分男生的合照-运动会期间（二）",
+                "path": "[proxy]/ForUs (4).jpg"
+            },
+            {
+                "about": [
+                    "李小波"
+                ],
+                "desc": "李小波（政治）老师的照片（一）",
+                "path": "[proxy]/AI/XiaoBo (1).jpeg"
+            },
+            {
+                "about": [
+                    "李小波"
+                ],
+                "desc": "李小波（政治）老师的照片（二）",
+                "path": "[proxy]/XiaoBo (2).jpg"
+            },
+            {
+                "about": [
+                    "张友石"
+                ],
+                "desc": "张友石（语文）老师的照片",
+                "path": "[proxy]/AI/ShiTou.jpeg"    
+            },
+            {
+                "about": [
+                    "黄婷"
+                ],
+                "desc": "黄婷（班长）同学的照片",
+                "path": "[proxy]/HT.jpg"
+            },
+            {
+                "about": [
+                    "黄婷",
+                    "陈斯俊"
+                ],
+                "desc": "黄婷（班长）、陈斯俊（英语课代表）同学的合照",
+                "path": "[proxy]/HT-CSJ.jpg"
+            },
+            {
+                "about": [
+                    "赵云杰"
+                ],
+                "desc": "赵云杰同学的照片",
+                "path": "[proxy]/ZYJ.png"
+            },
+            {
+                "about": [
+                    "黄浩文"
+                ],
+                "desc": "黄浩文同学的照片",
+                "path": "[proxy]/HHW.png"
+            },
+            {
+                "about": [
+                    "冯有聪"
+                ],
+                "desc": "冯有聪（副班长）同学的照片",
+                "path": "[proxy]/FYC.png"
+            },
+            {
+                "about": [
+                    "吕邦国"
+                ],
+                "desc": "吕邦国同学的照片",
+                "path": "[proxy]/LBG.png"
+            },
+            {
+                "about": [
+                    "卢俊超"
+                ],
+                "desc": "卢俊超同学的照片",
+                "path": "[proxy]/LJC.png"
+            },
+            {
+                "about": [
+                    "周启波"
+                ],
+                "desc": "周启波同学的照片",
+                "path": "[proxy]/ZQB.png"
+            }
+        ]
+    }
+}

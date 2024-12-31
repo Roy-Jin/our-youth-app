@@ -25,7 +25,7 @@
         ]
     },
     "info": {
-        "current": 2,
+        "current": 3,
         "backup": [
             {
                 "version": 0,
@@ -38,6 +38,10 @@
             {
                 "version": 2,
                 "path": "/info/v2.json"
+            },
+            {
+                "version": 3,
+                "path": "/info/v3.json"
             }
         ]
     }
