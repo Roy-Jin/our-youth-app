@@ -1,0 +1,112 @@
+{
+    "name": "数据信息",
+    "version": 5,
+    "description": "这是APP的部分数据，同时还有班级口号(memoryPage[quotes])、欢迎语(homePage[welcomeTexts])、产品信息(homePage[items])等。",
+    "date": "添加了「清语」-AI",
+    "detail": {
+        "homePage": {
+            "welcomeTexts": [
+                {
+                    "R": [
+                        "00:00",
+                        "04:29"
+                    ],
+                    "T": "快去睡觉吧，晚安~"
+                },
+                {
+                    "R": [
+                        "04:30",
+                        "08:00"
+                    ],
+                    "T": "你醒了?早上好!我的朋友~"
+                },
+                {
+                    "R": [
+                        "08:00",
+                        "11:00"
+                    ],
+                    "T": "今天有什么安排嘛~?"
+                },
+                {
+                    "R": [
+                        "11:00",
+                        "14:00"
+                    ],
+                    "T": "午休时间到，休息一下?!"
+                },
+                {
+                    "R": [
+                        "14:00",
+                        "17:00"
+                    ],
+                    "T": "要来杯下午茶吗?反正不是我请客~"
+                },
+                {
+                    "R": [
+                        "17:00",
+                        "20:00"
+                    ],
+                    "T": "一天就这样结束了，人生如此啊~"
+                },
+                {
+                    "R": [
+                        "20:00",
+                        "23:59"
+                    ],
+                    "T": "你似乎精力充沛?!快去睡觉吧，晚安~"
+                }
+            ],
+            "soup": "青春是一段充满梦想与挑战的旅程，每一个瞬间都值得珍惜与回味.",
+            "items": [
+                {
+                    "title": "高考倒计时",
+                    "text": "这是一个轻量版的高考倒计时程序，主要功能是显示距离高考的倒计时时间",
+                    "version": "V 1.0",
+                    "href": "./views/products/GaoKao.html"
+                },
+                {
+                    "title": "2048",
+                    "text": "一个简单的 2048 益智程序，经典原汁原味，可以玩玩看~",
+                    "version": "V 2.0",
+                    "href": "./views/products/2048/index.html",
+                    "notTitle": true
+                },
+                {
+                    "title": "在线轻白板",
+                    "text": "一个轻量级的在线白板程序，可以进行在线绘图、标注等操作",
+                    "version": "(网络更新)",
+                    "href": "./views/products/WebView.html?full=1&url=https://roy-jin.github.io/RuoYiBoard",
+                    "notTitle": true
+                },
+                {
+                    "title": "「清语」",
+                    "text": "「清语」-AI，一个基于深度学习的智能聊天机器人，可以和你聊天、获取相关信息等",
+                    "version": "(测试版公测中)",
+                    "href": "./views/products/ChatBot/index.html"
+                },
+                {
+                    "title": "JSTERM",
+                    "text": "在线终端程序，可以进行简单的命令行操作，可以玩玩看~",
+                    "version": "(暂未开放)",
+                    "href": "./views/products/WebView.html?full=1&url=https://jsterm.pages.dev/",
+                    "notTitle": true,
+                    "inactive": true
+                },
+                {
+                    "title": "Peer 聊天室",
+                    "text": "一个简单的 Peer 聊天室程序，可以实现多人聊天的功能",
+                    "version": "(暂未开放)",
+                    "inactive": true
+                }
+            ]
+        },
+        "memoryPage": {
+            "quotes": [
+                "努力拼搏,",
+                "超越自我,",
+                "激扬青春,",
+                "放飞梦想."
+            ]
+        }
+    }
+}

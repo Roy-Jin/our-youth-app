@@ -78,5 +78,13 @@
         "description": "新年快乐（2025）~",
         "log": "- 修复APP首次启动问题\n- APP名换为“我们青春”\n- 稳定性优化\n- 登录逻辑优化\no(*////▽////*)q",
         "download": "OurYouth V2.4.4稳定.APK"
+    },
+    {
+        "code": "245",
+        "status": "beta",
+        "date": "2025-01-12",
+        "description": "「清语」-AI 陪你聊天~",
+        "log": "- 新增「清语」-AI 陪你聊天\n(╹ڡ╹ )",
+        "download": "OurYouth V2.4.5测试.APK"
     }
 ]

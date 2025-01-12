@@ -109,11 +109,38 @@ function sendMsg(message) {
             addMsg(reply, 'left');
         })
         .catch(error => {
-            document.title = '「清语」好像不能理解你的问题...';
-            thinking.innerHTML = '「清语」好像不能理解你的问题...';
+            document.title = '「清语」无法理解...';
+            thinking.innerHTML = '「清语」无法理解...';
             console.error('Error:' + error);
         });
 }
+
+function typingEffect(ele, { delay, outTime, callback } = { delay: 11, outTime: 0 }) {
+    let Text = ele.innerText;
+
+    ele.innerHTML = '';
+    let I = 0;
+
+    function Typeing() {
+        let [T, L] = [Text.charAt(I).replace(/\n/g, '↩️'), Text.length];
+
+        if (I < L) {
+            switch (T) {
+                case '↩️':
+                    ele.innerHTML += '<br>';
+                    break;
+                default:
+                    ele.innerHTML += T;
+            }
+            I++;
+            setTimeout(Typeing, delay);
+        } else {
+            if (callback) callback(); // 打字结束回调函数
+        }
+    }
+    setTimeout(Typeing, outTime);
+}
+
 
 InvokeBtns.forEach((item) =>
     item.addEventListener('click', (e) => {

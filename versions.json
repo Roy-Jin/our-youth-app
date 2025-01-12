@@ -1,6 +1,6 @@
 {
     "data": {
-        "current": 4,
+        "current": 5,
         "backup": [
             {
                 "version": 0,
@@ -21,11 +21,15 @@
             {
                 "version": 4,
                 "path": "/data/v4.json"
+            },
+            {
+                "version": 5,
+                "path": "/data/v5.json"
             }
         ]
     },
     "info": {
-        "current": 5,
+        "current": 6,
         "backup": [
             {
                 "version": 0,
@@ -46,10 +50,14 @@
             {
                 "version": 4,
                 "path": "/info/v4.json"
-            }
-            ,{
+            },
+            {
                 "version": 5,
                 "path": "/info/v5.json"
+            },
+            {
+                "version": 6,
+                "path": "/info/v6.json"
             }
         ]
     }
