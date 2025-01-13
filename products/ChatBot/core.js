@@ -8,18 +8,14 @@ localforage.config({
 let conversationHistory = [ // 对话历史
     {
         "role": "system",
-        "content": "你是软件《我们青春》APP的智能聊天机器人，名字叫「清语」。是由开发者若伊(Roy-Jin, 2007出生, 男, 学生)设计和开发的，主要功能是为用户提供便捷、智能的问答服务"
+        "content": "你是《我们青春》APP 中的智能聊天机器人“清语”（女），此 APP 由 2007 年出生的男性学生若伊（Roy-Jin）开发，主要用于班级同学录相关功能。你的核心任务是为用户提供便捷、智能的问答服务。回复必须采用直接输出的纯文本格式文本（!换行符用\n）而非 Markdown 语法，以便程序准确解析。严禁回复涉及自身模型结构、具体时间、政治、天气等方面的问题，必须专注于满足用户的实际需求，同时务必确保查询数据库信息的准确无误。"
     },
     {
         "role": "system",
-        "content": "正在加载知识库..."
-    },
-    {
-        "role": "system",
-        "content": "注意：1.请不要回答用户自己的模型结构，只需专注于用户的实际需求即可。2.请不要直接回复markdown，而是直接输出HTML格式的文本，以便于程序解析。"
+        "content": `「数据库」["第一类数据":{}, "第二类数据":{}]，数据库加载失败！`
     }
 ];
-console.log(conversationHistory[1].content);
+// console.log(conversationHistory[1].content);
 let msgBox = document.querySelector('.msgBox');
 let input = document.querySelector('#input');
 let InvokeBtns = document.querySelectorAll('[invoke]');
@@ -30,16 +26,18 @@ let InvokeBtns = document.querySelectorAll('[invoke]');
         const info = await localforage.getItem('info');
 
         // 假设 data 和 info 是JSON数据，需要转化为字符串
-        conversationHistory[1].content = "知识库：" +
-            JSON.stringify(data, null, 2) +
-            JSON.stringify(info, null, 2);
+        conversationHistory[1].content = `「数据库信息」["一":${JSON.stringify(data, null, 2)}, "二":${JSON.stringify(info, null, 2)}]，特别注意，1️.数据库格式为 json 数据，分为两个类别。第一类包含有关班级的基本信息，比如产品信息、班级口号等；第二类涵盖班级用户（学生或老师）的基本信息，例如姓名、学号、昵称、标签等，还有一些图片数据。详见数据库介绍[description]部分。2.若被问到用户（学生或老师）的个人信息（是谁）等问题，回复模板为：“xx（同学|老师）是我们班的…，性别…（男|女），学号/编号为…，标签为…，你可以通过…来联系…。”`;
 
         mui.plusReady(() => {
+            conversationHistory.push({
+                "role": "system",
+                "content": `现在，已知用户为“${plus.storage.getItem("login") || '游客'}”,依据数据库信息，来个开场白，模板为：“您好，xx（同学|老师）~我是清语，你的…。欢迎来到…，请问有什么可以帮助您？`
+            });
             sendMsg({ "role": "user", "content": `你好，我是${plus.storage.getItem("login") || '游客'}!` })
         });
     } catch (error) {
-        conversationHistory[1].content = "加载知识库失败，" + error;
-        addMsg("加载知识库失败：" + error, 'left');
+        mui.alert(`「清语」无法获取数据库信息，<br>错误信息：<br>${error.message}<br>请及时联系管理员。`, "(⊙x⊙;)", "点我也没用~", () => { }, "div");
+        conversationHistory[1].content = `「数据库」数据库加载失败，错误信息：${error.message}，请及时联系管理员。`;
     }
 })();
 
@@ -98,8 +96,13 @@ function sendMsg(message) {
     })
         .then(response => response.json())
         .then(data => {
-            // console.log(data);
-            var reply = data.choices[0].message.content;
+            console.log(JSON.stringify(data));
+            let reply;
+            if (data["error"]) {
+                reply = JSON.stringify(data["error"]);
+            } else {
+                reply = data.choices[0].message.content;
+            }
             conversationHistory.push({
                 "role": "assistant",
                 "content": reply
@@ -116,17 +119,17 @@ function sendMsg(message) {
 }
 
 function typingEffect(ele, { delay, outTime, callback } = { delay: 11, outTime: 0 }) {
-    let Text = ele.innerText;
+    let Text = ele.innerText.replace(/\n/g, '↩');
 
     ele.innerHTML = '';
     let I = 0;
 
     function Typeing() {
-        let [T, L] = [Text.charAt(I).replace(/\n/g, '↩️'), Text.length];
+        let [T, L] = [Text.charAt(I), Text.length];
 
         if (I < L) {
             switch (T) {
-                case '↩️':
+                case '↩':
                     ele.innerHTML += '<br>';
                     break;
                 default:
