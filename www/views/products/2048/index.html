@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width" />
+    <script src="../../../js/mui.min.js"></script>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="../../../css/base.css">
+    </link>
+    <title>2048</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="header">
+            <div class="title">
+                <h3 class="name">2048</h3>
+                <div class="score-area">
+                    <div class="score">
+                        <span class="label">已得分</span>
+                        <span class="value">0</span>
+                    </div>
+                    <div class="best">
+                        <span class="label">最高分</span>
+                        <span class="value">0</span>
+                    </div>
+                </div>
+            </div>
+            <div class="btn">
+                <div class="change-bgColor">🎨</div>
+                <div class="new-game-btn">重置</div>
+            </div>
+        </div>
+        <div class="game-area">
+            <div id="game-start">开始吧</div>
+            <div id="board">
+                <div class="board-box"></div>
+                <div class="game-over">
+                    <div class="label">游戏结束!</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">「2048」算法由<span id="link">Roy-Jin</span>编写并提供支持.</div>
+</body>
+
+<script>
+    mui.init({
+        swipeBack: false
+    });
+
+    mui.plusReady(function () {
+        const muiBack = mui.back;
+        let backConfirm;
+        mui.back = () => {
+            if (backConfirm) {
+                backConfirm.close();
+                return;
+            }
+            plus.device.vibrate(100);// 震动反馈
+            backConfirm = mui.confirm(
+                "这将会丢失你的游戏进度，<br/>确定要离开吗？<br/>" +
+                "<p style='color: #999;font-size: 50%;margin-top: .5em;'>" +
+                "(但会记录你的最高分)</p>", '提示', ['取消', '确定'],
+                (e) => {
+                    if (e.index === 1) {
+                        mui.later(() => muiBack(), 111);
+                    } else {
+                        backConfirm = null;
+                    }
+                }, "div")
+        }
+        document.getElementById('link').addEventListener('tap', () => {
+            // 弹出系统选择按钮框
+            plus.nativeUI.actionSheet(
+                {
+                    cancel: "取消操作",
+                    buttons: [{ title: "Roy-Jin 的个人网站" },{ title: "Roy-Jin 的开源主页" }]
+                },
+                (e) => {
+                    if (e.index == 2) {
+                        plus.runtime.openWeb('https://gitee.com/Roy-Jin');
+                    } else if (e.index == 1) {
+                        mui.toast('右上角在浏览器打开以获得更棒的体验~');
+                        plus.runtime.openWeb('https://r-j.pages.dev/');
+                    }
+                }
+            );
+        })
+    });
+</script>
+
+<script>
+    const Map = {
+        2: { color: '#333', bColor: '#ffffdd' },
+        4: { color: '#111', bColor: '#ebbd96' },
+        8: { color: '#f9f6f2', bColor: '#f2b179' },
+        16: { color: '#f9f6f2', bColor: '#f59563' },
+        32: { color: '#f9f6f2', bColor: '#f67c5f' },
+        64: { color: '#f9f6f2', bColor: '#f65e3b' },
+        128: { color: '#f9f6f2', bColor: '#edcf72' },
+        256: { color: '#f9f6f2', bColor: '#edcc61' },
+        512: { color: '#f9f6f2', bColor: '#edc850' },
+        1024: { color: '#f9f6f2', bColor: '#edc53f' },
+        2048: { color: '#f9f6f2', bColor: '#edc22e' },
+        4096: { color: '#f9f6f2', bColor: '#DFC22E' },
+        8192: { color: '#f9f6f2', bColor: '#CFCF22' },
+        16384: { color: '#f9f6f2', bColor: '#CFCF22' },
+        32768: { color: '#f9f6f2', bColor: '#3c3a32' },
+    }
+
+
+    /**
+     * 格子类
+     */
+    class Cell {
+        /**
+         * 构造函数
+         * @param {Number} row 所在行号
+         * @param {Number} col 所在列号
+         * @param {Number} value 数值
+         */
+        constructor(row, col, value) {
+            this.value = value
+            this.row = row
+            this.col = col
+
+            // 创建dom元素，并对其重新定位
+            this.dom = this.createDom(boardEl)
+            this.reLocation('gen')
+        }
+
+        /**
+         * 创建dom元素
+         */
+        createDom(parentNode) {
+            const dom = document.createElement('div')
+            dom.innerText = this.value
+            dom.className = 'cell real-cell'
+            dom.style.color = Map[this.value].color || '#f9f6f2'
+            dom.style.backgroundColor = Map[this.value].bColor || '#3c3a32'
+            parentNode.append(dom)
+            return dom
+        }
+
+        /**
+         * 重新定位
+         */
+        reLocation(type, r = this.row, c = this.col) {
+            const padding = 0;
+
+            const rect = this.dom.getBoundingClientRect()
+            const fromLeft = rect.width * this.col + (this.col * padding) + 'px'
+            const fromTop = rect.height * this.row + (this.row * padding) + 'px'
+            const toLeft = rect.width * c + (c * padding) + 'px'
+            const toTop = rect.height * r + (r * padding) + 'px'
+
+            this.row = r
+            this.col = c
+
+            // this.dom.getAnimations().forEach(animate => animate.cancel())
+            return this.dom.animate(getAnimations(type, { fromLeft, fromTop, toLeft, toTop }), { duration: 80, fill: 'forwards' })
+        }
+
+    }
+
+    /**
+     * 根据类型获取动画列表
+     */
+    function getAnimations(type, rect) {
+        let list = []
+        switch (type) {
+            case 'gen':
+                return [
+                    { left: rect.fromLeft, top: rect.fromTop, transform: 'scale(0)' },
+                    { left: rect.toLeft, top: rect.toTop, transform: 'scale(1)' }
+                ]
+            case 'move':
+                return [
+                    { left: rect.fromLeft, top: rect.fromTop },
+                    { left: rect.toLeft, top: rect.toTop }
+                ]
+        }
+        return list
+    }
+
+    const NEXT_DIRECTION = {
+        ArrowUp: (r, c) => [r + 1, c],
+        ArrowDown: (r, c) => [r - 1, c],
+        ArrowLeft: (r, c) => [r, c + 1],
+        ArrowRight: (r, c) => [r, c - 1]
+    }
+
+    const DIRECTION = {
+        ArrowUp: (row, col, callback) => executeCallback(0, col, index => callback(0, index)),
+        ArrowDown: (row, col, callback) => executeCallback(0, col, index => callback(row - 1, index)),
+        ArrowLeft: (row, col, callback) => executeCallback(0, row, index => callback(index, 0)),
+        ArrowRight: (row, col, callback) => executeCallback(0, row, index => callback(index, col - 1))
+    }
+
+    const eventList = {}
+
+    /**
+     * 格子棋盘
+     */
+    class CellBorder {
+
+        constructor(row, col) {
+            this.row = row
+            this.col = col
+            this.cellList = []
+            // 事件列表
+            this.eventList = {}
+            // 空白数量
+            this.blankCount = row * col
+            // 游戏结束标识
+            this.gameOver = false
+
+            this.init()
+        }
+
+        /**
+         * 初始化函数
+         */
+        init() {
+            // 初始化容器
+            this.initContainer()
+
+            // 生成随机两个cell，并添加到容器
+            this.generatorCell(2)
+        }
+
+        /**
+         * 初始化容器数据
+         */
+        initContainer() {
+            boardEl.innerHTML = ''
+            for (let r = 0; r < this.row; r++) {
+                const row = document.createElement('div')
+                row.className = 'row-cell'
+                this.cellList[r] = new Array(this.col)
+                for (let c = 0; c < this.col; c++) {
+                    const cell = document.createElement('div')
+                    cell.className = 'cell'
+                    row.appendChild(cell)
+                }
+                boardEl.appendChild(row)
+            }
+        }
+
+        /**
+         * 生成随机两个cell
+         */
+        generatorCell(number = 1, options = [2, 4]) {
+            if (number > this.blankCount) {
+                number = this.blankCount
+            }
+            while (number-- > 0) {
+                let r = getRandomInt(0, this.row)
+                let c = getRandomInt(0, this.col)
+                while (this.cellList[r][c]) {
+                    r = getRandomInt(0, this.row)
+                    c = getRandomInt(0, this.col)
+                }
+                // 随机2 || 4
+                const index = getRandomInt(0, options.length)
+
+                // 创建cell
+                this.cellList[r][c] = new Cell(r, c, options[index])
+                this.blankCount-- // 空白位置减少
+            }
+        }
+
+        /**
+         * doCall
+         */
+        doCall(key) {
+            const callback = DIRECTION[key]
+            if (callback && !this.gameOver) {
+                // 判断游戏是否结束
+                if (this.isGameOver()) {
+                    this.gameOver = true
+                    gameOverEl.classList.add('active')
+                } else {
+                    callback(this.row, this.col, (r, c) => this.call(r, c, key))
+
+                    // 重新生成新的cell
+                    this.generatorCell()
+                }
+            }
+        }
+
+        /**
+         * 计算每行，每列
+         */
+        call(r, c, d) {
+            if (!this.isRange(r, c)) return
+            const curNode = this.cellList[r][c]
+            // 得到下一个节点
+            const nextNode = this.getNextNode(r, c, d)
+            if (!nextNode) return
+            const { row, col, value } = nextNode
+            // 当前位置没有元素，位置交换（移动操作）
+            if (!curNode) {
+                nextNode.reLocation('move', r, c)
+                this.cellList[r][c] = nextNode
+                this.cellList[row][col] = null
+                return this.call(r, c, d)
+            }
+            // 当前有元素并且值相同（合并操作）
+            else if (curNode.value === value) {
+                const animate = nextNode.reLocation('move', r, c)
+                this.cellList[row][col] = null
+                setTimeout(e => {
+                    boardEl.removeChild(nextNode.dom)
+                    boardEl.removeChild(curNode.dom)
+                    this.cellList[r][c] = new Cell(r, c, value * 2)
+                }, 80)
+                this.blankCount++ // 空白位置增加
+                // 发布加分事件
+                this.publishScore('score', value * 2)
+            }
+            // 递归进行下一个cell
+            const [nextR, nextC] = NEXT_DIRECTION[d](r, c)
+            this.call(nextR, nextC, d)
+        }
+
+        /**
+         * 获取下一个节点
+         */
+        getNextNode(r, c, d) {
+            let [nextR, nextC] = NEXT_DIRECTION[d](r, c)
+            while (this.isRange(nextR, nextC)) {
+                if (this.cellList[nextR][nextC]) {
+                    return this.cellList[nextR][nextC]
+                }
+                [nextR, nextC] = NEXT_DIRECTION[d](nextR, nextC)
+            }
+            return null
+        }
+
+        /**
+         * 检查是否在范围内
+         */
+        isRange(row, col) {
+            return row >= 0 && row < this.row && col >= 0 && col < this.col
+        }
+
+        /**
+         * 检查游戏是否结束
+         */
+        isGameOver() {
+            // 存在空白位置，游戏没有结束
+            if (this.blankCount > 0) {
+                return false
+            }
+            // 定义方向
+            const dir = [[1, 0], [0, 1]]
+
+            // 检查每一个cell可操作，存在可操作
+            for (let r = 0; r < this.row; r++) {
+                for (let c = 0; c < this.col; c++) {
+                    for (let d = 0; d < dir.length; d++) {
+                        let a = r + dir[d][0]
+                        let b = c + dir[d][1]
+                        // 在范围内
+                        if (this.isRange(a, b) && this.cellList[r][c].value === this.cellList[a][b].value) {
+                            return false
+                        }
+                    }
+                }
+            }
+            return true
+        }
+
+        /**
+         * 发布事件
+         */
+        publishScore(event, data) {
+            eventList[event].call(this, data)
+        }
+
+        /**
+         * 订阅事件
+         */
+        subscribe(event, callback) {
+            eventList[event] = callback
+        }
+
+    }
+
+    /**
+     * 生成随机数
+     * @param {Number} min 最小值
+     * @param {Number} max 最大值
+     * @returns 结果
+     */
+    function getRandomInt(min, max) {
+        return Math.floor(Math.random() * (max - min)) + min
+    }
+
+    /**
+     * 在范围内执行回调
+     */
+    function executeCallback(min, max, callback) {
+        while (min < max) callback(min++)
+    }
+
+    let keydownFlag = false
+    const scoreEl = document.querySelector('.score .value')
+    const bestScoreEl = document.querySelector('.best .value')
+    const newGameEl = document.querySelector('.new-game-btn')
+
+    class Game {
+        constructor([row, col], cacheKey) {
+            this.row = row
+            this.col = col
+            this.totalScore = 0
+            this.totalBestScore = localStorage.getItem(cacheKey) || 0
+            bestScoreEl.innerText = this.totalBestScore
+
+            this.cellBorder = new CellBorder(row, col)
+            this.initEvent()
+        }
+
+        // 初始化事件
+        initEvent() {
+            window.addEventListener('keydown', event => {
+                if (!keydownFlag) {
+                    keydownFlag = true
+                    this.cellBorder.doCall(event.key)
+                }
+            })
+            window.addEventListener('keyup', event => {
+                keydownFlag = false
+            })
+
+            window.addEventListener("swiperight", event => {
+                this.cellBorder.doCall('ArrowRight')
+            })
+
+            window.addEventListener("swipeleft", event => {
+                this.cellBorder.doCall('ArrowLeft')
+            })
+
+            window.addEventListener("swipedown", event => {
+                this.cellBorder.doCall('ArrowDown')
+            })
+
+            window.addEventListener("swipeup", event => {
+                this.cellBorder.doCall('ArrowUp')
+            })
+
+            newGameEl.addEventListener('click', this.restart.bind(this))
+
+            this.cellBorder.subscribe('score', this.addScore.bind(this))
+        }
+
+        /**
+         * 加分
+         */
+        addScore(value) {
+            this.totalScore += value
+            if (this.totalScore > this.totalBestScore) {
+                this.totalBestScore = this.totalScore
+                localStorage.setItem(cacheKey, this.totalBestScore)
+                bestScoreEl.innerText = this.totalBestScore
+            }
+            scoreEl.innerText = this.totalScore
+            const effect = document.createElement('div')
+            effect.innerText = '+' + value
+            effect.className = 'effect'
+            scoreEl.appendChild(effect)
+        }
+
+        /**
+         * 重新开始
+         */
+        restart() {
+            this.totalScore = 0
+            this.cellBorder = new CellBorder(this.row, this.col)
+            scoreEl.innerText = 0
+
+            gameOverEl.classList.remove('active')
+        }
+
+    }
+
+    const boardEl = document.querySelector(".board-box")
+    const gameOverEl = document.querySelector(".game-over")
+    const cacheKey = 'BEST_SCORE_2048';
+    const cacheColor = 'CACHE_COLOR_2048';
+
+    window.onload = function () {
+        document.querySelector('.best .value').innerText =
+            localStorage.getItem(cacheKey) || 0;
+
+        // window加载完成后，创建游戏对象
+        document.querySelector("#game-start").addEventListener("click", function (e) {
+            e.currentTarget.style.display = "none";
+            document.querySelector("#board").style.display = "block";
+            document.documentElement.style.setProperty('--board-bg', localStorage.getItem(cacheColor));
+            const game = new Game([4, 4], cacheKey);
+        })
+
+        // 切换配色
+        document.querySelector(".change-bgColor").addEventListener("click", function (e) {
+            mui.confirm("请选择你要的操作", "调色盘", ["取消", "重置配色", "切换配色"], function (e) {
+                if (e.index === 1) {
+                    localStorage.setItem(cacheColor, "#816311");
+                    document.documentElement.style.setProperty('--board-bg', "#816311");
+                } else if (e.index === 2) {
+                    const input = document.createElement("input");
+                    input.type = "color";
+                    input.value = localStorage.getItem(cacheColor) || "#816311";
+                    input.addEventListener("change", function (e) {
+                        localStorage.setItem(cacheColor, e.target.value);
+                        document.documentElement.style.setProperty('--board-bg', e.target.value);
+                        input.remove();
+                    });
+                    input.click();
+                }
+            }, "div");
+        });
+    }
+</script>
+
+</html>

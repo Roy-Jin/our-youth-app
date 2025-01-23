@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width" />
+	<link href="../../css/base.css" rel="stylesheet" />
+	<script src="../../js/mui.min.js"></script>
+	<title>高考倒计时</title>
+	<style>
+		html {
+			background-color: #d2ffce;
+			font-family: Arial, sans-serif;
+		}
+
+		body {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 100vh;
+		}
+
+		.countdown-container {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			text-align: center;
+			padding: 40px;
+			border-radius: 20px;
+			background: rgba(255, 255, 255, 0.8);
+			box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+		}
+
+		h2 {
+			font-weight: normal;
+			margin-bottom: 30px;
+			letter-spacing: 2px;
+		}
+
+		.days {
+			font-size: 3rem;
+			font-weight: bold;
+			color: #ff7e5f;
+		}
+
+		.days span {
+			display: inline-block;
+			border: 2px solid #ff7e5f;
+			border-radius: 5px;
+			padding: 10px;
+		}
+
+		@media (max-width: 600px) {
+			h2 {
+				font-size: 1.5rem;
+			}
+
+			.days {
+				font-size: 2.5rem;
+			}
+		}
+	</style>
+</head>
+
+<body>
+	<div class="countdown-container">
+		<h2 id="countdown-title">距离高考还有：</h2>
+		<div class="days">
+			<span>0</span>
+			<span>0</span>
+			<span>0</span>
+			天
+		</div>
+	</div>
+
+	<script>
+		mui.init({
+			swipeBack: true, //启用右滑关闭功能
+		});
+
+		const examDateTime = new Date('2025-06-07');
+
+		function updateCountdown() {
+			// 获取今天00:00的时间戳
+			let today = new Date();
+			// today = new Date('2028-06-11'); // 测试用，将日期改为当前日期
+			const todayTimeStamp = today.setHours(0, 0, 0, 0);
+
+			// 计算距离高考还有多少天
+			const timeDiff = examDateTime - todayTimeStamp;
+			const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+
+			if (days > 0) {
+				// 使用padStart补足前导零
+				let daysString = days.toString().padStart(3, '0');
+
+				// 显示倒计时
+				const spans = document.querySelectorAll('.days span');
+				if (spans.length >= 3) {
+					spans[0].textContent = daysString[0];
+					spans[1].textContent = daysString[1];
+					spans[2].textContent = daysString[2];
+				} else {
+					console.error('找不到倒计时的显示元素');
+				}
+
+			} else if (days > -3) {
+				// 倒计时即将结束，显示祝福语
+				document.querySelector('#countdown-title').innerHTML = 'zzzzzzzzzz...';
+				document.querySelector('.days').innerHTML = '高考进行中,<br>祝你好运!';
+			} else {
+				// 高考已结束
+				document.querySelector('#countdown-title').innerHTML = '高考已经过去了';
+
+				// 使用padStart补足前导零
+				if (days < -999) {
+					document.querySelector('#countdown-title').innerHTML = '你来这里做什么?';
+					document.querySelector('.days').innerHTML = '高考只是个开始,人生还有很多事要做...';
+					return;
+				}
+
+				let daysString = Math.abs(days).toString().padStart(3, '0');
+
+				// 显示倒计时
+				const spans = document.querySelectorAll('.days span');
+				if (spans.length >= 3) {
+					spans[0].textContent = daysString[0];
+					spans[1].textContent = daysString[1];
+					spans[2].textContent = daysString[2];
+				} else {
+					console.error('找不到倒计时的显示元素');
+				}
+			}
+		}
+
+		// 每秒钟更新一次倒计时
+		updateCountdown();
+		const intervalId = setInterval(updateCountdown, 1000);
+	</script>
+</body>
+
+</html>

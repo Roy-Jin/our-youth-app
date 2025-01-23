@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link href="../css/base.css" rel="stylesheet" />
+    <script src="../js/mui.min.js"></script>
+    <script src="../js/Users.js"></script>
+    <script src="../js/localforage.min.js"></script>
+    <script src="../js/openView.js"></script>
+
+    <style>
+        body {
+            background-color: #f0f8ff;
+        }
+
+        .container {
+            margin: auto;
+            padding: 20px;
+            max-width: 400px;
+            border-radius: 8px;
+        }
+
+        .input-group {
+            padding: 1rem .8rem 0 .8rem;
+        }
+
+        .input-group .input {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1rem;
+            background: linear-gradient(to right, transparent, transparent);
+            color: #888;
+            border-radius: 1rem;
+            border: solid 1.5px #9e9e9e;
+            transition: all .3s ease-out;
+        }
+
+        .input-group .input:focus {
+            color: #1a73e8;
+            border: 1.5px solid #1a73e8;
+            outline: none;
+        }
+
+        .input.invalid {
+            color: #e6f2ff !important;
+            border: solid 1.5px brown !important;
+            background: linear-gradient(to right, brown, transparent) !important;
+            text-decoration: underline 1px #e6f2ff;
+        }
+
+        .search-result {
+            display: flex;
+            flex-direction: column;
+            margin: 10px;
+        }
+
+        .search-result .card {
+            transition: 0.3s ease-out;
+            border: 2px solid;
+            border-radius: 10px;
+            padding: 10px;
+            margin: 3px;
+        }
+
+        .search-result .card:active {
+            transform: scale(0.8);
+        }
+
+        .search-result .card.card-male {
+            background-color: #c9dde4;
+            color: #2f9497;
+            border-color: #2f9497;
+        }
+
+        .search-result .card.card-female {
+            background-color: #eed4d8;
+            color: #d1567f;
+            border-color: #d1567f;
+        }
+
+        .card-header {
+            font-size: 1.2rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .card-header .alias {
+            margin-left: 0.5rem;
+            font-size: 50%;
+            font-weight: normal;
+            letter-spacing: normal;
+        }
+
+        .card-content {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .card-footer {
+            padding: 3px;
+            color: #ac7a3a;
+            text-align: end;
+            font-size: 0.8rem;
+            border-radius: 5px;
+        }
+
+        .card-footer span {
+            font-weight: bolder;
+            padding: 0 3px;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 12px;
+            color: #888;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="mui-scroll-wrapper">
+        <div class="mui-scroll">
+            <div class="container">
+                <div class="input-group">
+                    <input class="input" required="" type="text" name="text" autocomplete="off" id="input">
+                </div>
+                <div class="search-result">
+                </div>
+                <div class="footer">© 2025 «我们青春» by Roy-Jin.</div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    mui.init();
+    const searchInput = document.querySelector(".input");
+
+    // 初始化
+    document.addEventListener("DOMContentLoaded", () => {
+        mui('.mui-scroll-wrapper').scroll({
+            indicators: false, // 隐藏滚动条指示器
+        }); // 初始化滚动条  
+
+        searchInput.focus(); // 聚焦搜索框
+    });
+
+    // 显示软键盘
+    mui.plusReady(function () {
+        plus.key.showSoftKeybord();
+    });
+
+    // 搜索
+    localforage.getItem('user').then(__DATA__ => {
+        const USERS = new USERS_CLASS(__DATA__ || _DATA_);
+        searchInput.addEventListener("input", () => {
+            document.querySelector(".search-result").innerHTML = ""; // 清空搜索结果区域
+            const value = searchInput.value.trim();
+
+            if (value === "") {
+                document.querySelector(".search-result").innerHTML = "";
+                return;
+            }
+
+            const searchResults = USERS.search(value); // 使用搜索函数搜索结果
+
+            searchResults.forEach(item => {
+                const card = document.createElement('div');
+                card.className = `card ${item.gender ? 'card-male' : 'card-female'}`; // 根据性别设置不同的样式
+                card.innerHTML =
+                    `<div class="card-header">${item.name}<span class="alias">${item.alias[1]}</span></div>` +
+                    `<div class="card-content">${item.id > 222000 ? '#' + item.id + '，' : ""}${item.tags.join('，')}</div>`;
+                card.addEventListener('click', () => {
+                    const url = `./user-detail.html?name=${item.name}&from=search`;
+                    openView(url, { aniShow: "zoom-fade-out" });
+                });
+                document.querySelector(".search-result").appendChild(card); // 将卡片添加到老师展示区域
+            });
+            const card_footer = document.createElement('span');
+            card_footer.className = "card-footer";
+            card_footer.innerHTML = `*共找到<span>${searchResults.length}</span>条结果.`;
+            searchInput.classList.remove("invalid");
+            if (searchResults.length === 0) {
+                card_footer.innerHTML = `*未找到相关结果.`;
+                searchInput.classList.add("invalid");
+            };
+            document.querySelector(".search-result").insertBefore(card_footer, document.querySelector(".card")); // 添加底部信息
+        });
+    });
+
+    // 失去焦点
+    searchInput.addEventListener("blur", () => {
+        if (searchInput.value.trim() === "") {
+            mui.back(); // 退出当前页面
+        }
+    });
+</script>
+
+</html>

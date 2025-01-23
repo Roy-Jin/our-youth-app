@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width" />
+    <link rel="stylesheet" href="../css/base.css">
+    <script src="../js/mui.min.js"></script>
+    <script src="../js/tab.base.js"></script>
+    <script src="../js/localforage.min.js"></script>
+    <title>Our Youth - Home Page</title>
+    <style>
+        body {
+            background-color: #f0f8ff;
+        }
+
+        .container {
+            border-radius: 8px;
+            padding: 20px;
+            max-width: 400px;
+            margin: auto;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 12px;
+            color: #888;
+        }
+
+        .title {
+            color: #55d821;
+            margin-bottom: 1rem;
+            border-radius: .6rem;
+            padding-left: 1rem;
+            font-family: "Pacifico", '仓耳舒圆体';
+            background: linear-gradient(to right, #a5ff81, transparent);
+        }
+
+        p {
+            color: #444;
+            text-align: center;
+        }
+
+        #soup {
+            width: 100%;
+            height: 155px;
+            border: none;
+            margin-bottom: 1rem;
+            border-radius: 10px;
+            transition: 0.3s ease-out;
+            background: radial-gradient(ellipse farthest-side at 85% 85%, rgba(245, 228, 212, 0.25) 4%, rgba(255, 255, 255, 0) calc(4% + 1px)), radial-gradient(circle at 85% 33%, #fef6ec 4%, rgba(255, 255, 255, 0) 4.18%), linear-gradient(135deg, #ff0000 0%, #000036 100%), radial-gradient(ellipse at 28% 0%, #ffcfac 0%, rgba(98, 149, 144, 0.5) 100%), linear-gradient(180deg, #cd6e8a 0%, #f5eab0 69%, #d6c8a2 70%, #a2758d 100%);
+            background-blend-mode: normal, normal, screen, overlay, normal;
+            box-shadow: 1px 1px 5px #666;
+        }
+
+        #soup p {
+            font-size: 85%;
+            position: relative;
+            font-weight: bold;
+            top: 33px;
+            left: 20px;
+            width: 56%;
+            line-height: 150%;
+            letter-spacing: 1px;
+            color: lightseagreen;
+            text-shadow: 2px 2px 3px seashell;
+        }
+
+        #soup .reflection {
+            transform: scaleY(-0.5) translateY(-10px) skewX(5deg);
+            opacity: 0.1;
+        }
+
+        .products-box {
+            padding: 1rem;
+            border-radius: 1rem;
+            background: linear-gradient(to right bottom, cadetblue 50px, transparent);
+        }
+
+        .products-box h3 {
+            color: #eee;
+            font-family: "Pacifico", '仓耳舒圆体';
+        }
+
+        #products-panel {
+            display: flex;
+            margin-top: 20px;
+            flex-direction: column;
+        }
+
+        .product {
+            width: 100%;
+            min-height: 70px;
+            padding: 10px;
+            margin-top: 5px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: left;
+            transition: 0.3s ease-out;
+        }
+
+        .product.inactive {
+            opacity: 0.65;
+            pointer-events: none;
+            filter: grayscale(100%);
+        }
+
+        .product:active,
+        #soup:active {
+            transform: scale(0.8);
+            text-shadow: 0 0 5px #666;
+            box-shadow: 0 0 5px #666;
+        }
+
+        .product .img {
+            background: linear-gradient(to right top, #845ec2, #d65db1, #ff6f91, #ff9671, #ffc75f, #f9f871);
+            background: conic-gradient(red, yellow, green, cyan, blue, magenta, red);
+            border-radius: 10px;
+            height: 60px;
+            width: 60px;
+        }
+
+        .product .img .text {
+            display: flex;
+            height: 100%;
+            width: 100%;
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+            border: 5px transparent solid;
+            background: rgba(0, 0, 0, 0.2);
+            background-clip: content-box;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #eee;
+        }
+
+        .product .textBox {
+            flex: 1;
+            margin-left: 10px;
+            color: #eee;
+        }
+
+        .product .textContent {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .product .span {
+            color: #444;
+            font-size: 10px;
+        }
+
+        .product .h1 {
+            font-size: 1rem;
+            font-weight: bolder;
+        }
+
+        .product .p {
+            text-align: start;
+            font-size: 12px;
+            font-weight: lighter;
+            color: #444;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="mui-scroll-wrapper">
+        <div class="mui-scroll">
+            <div class="container">
+                <h3 id="welcome" class="title">Hello, Youth!</h3>
+                <div id="soup" data-text="青春是一段充满梦想与挑战的旅程，每一个瞬间都值得珍惜与回味."></div>
+                <div class="products-box">
+                    <h3># Products.</h3>
+                    <div id="products-panel"></div>
+                </div>
+                <div class="footer">© 2025 «我们青春» by Roy-Jin.</div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    localforage.config({
+        name: 'OY-DATA',
+        storeName: 'OurYouth',
+    }); // 初始化 localforage
+
+    localforage.getItem('homePage').then((homePage) => {
+        // 根据当前时间显示不同的欢迎信息
+
+        homePage = homePage ? homePage : {};
+
+        (() => {
+            setInterval(() => {
+                const welcome = (() => {
+                    // 定义欢迎信息
+                    const welcomeTexts = homePage.welcomeTexts ? homePage.welcomeTexts : [
+                        { R: ["00:00", "04:29"], T: "为什么还不睡觉?" },
+                        { R: ["04:30", "08:00"], T: "你醒了?早安啦~" },
+                        { R: ["08:00", "11:00"], T: "今天打算做什么?" },
+                        { R: ["11:00", "14:00"], T: "午休时间到，休息下?!" },
+                        { R: ["14:00", "17:00"], T: "要来杯下午茶吗?" },
+                        { R: ["17:00", "20:00"], T: "累了，休息一会儿吧~" },
+                        { R: ["20:00", "23:59"], T: "晚上好，祝你好梦!" },
+                    ];
+
+
+                    // 获取当前时分小时
+                    const currentHour = new Date(); // 获取当前时间
+                    const currentTime = currentHour.getHours() * 60 + currentHour.getMinutes();
+
+                    // 遍历欢迎信息
+                    for (const welcome of welcomeTexts) {
+                        const startTime = welcome.R[0].split(':');
+                        const endTime = welcome.R[1].split(':');
+                        const startMinutes = parseInt(startTime[0]) * 60 + parseInt(startTime[1]);
+                        const endMinutes = parseInt(endTime[0]) * 60 + parseInt(endTime[1]);
+
+                        // 判断当前时间是否在范围内
+                        if (currentTime >= startMinutes && currentTime < endMinutes) {
+                            return welcome.T;
+                        }
+                    };
+                    return "Hello, Youth!"; // 默认文本
+                })();
+                const title = document.getElementById("welcome");
+                title.innerText === welcome ? null : title.innerText = welcome;
+            }, 1111)
+        })();
+
+        // 初始化soup
+        (() => {
+            const soup = document.getElementById("soup");
+            const text = homePage.soup ? homePage.soup : soup.getAttribute("data-text");
+            const mainText = document.createElement("p");
+            const reflection = document.createElement("p");
+            reflection.className = "reflection";
+            mainText.innerText = text;
+            reflection.innerText = text;
+            soup.appendChild(mainText);
+            soup.appendChild(reflection);
+        })();
+
+        // 初始化项目卡片
+        (() => {
+            const items = homePage.items ? homePage.items : [
+                {
+                    title: "高考倒计时",
+                    text: "这是一个轻量版的高考倒计时程序，主要功能是显示距离高考的倒计时时间",
+                    version: "V 1.0",
+                    href: "./products/GaoKao.html"
+                },
+                {
+                    title: "2048",
+                    text: "一个简单的 2048 益智程序，经典原汁原味，可以玩玩看~",
+                    version: "V 2.0",
+                    href: "./products/2048/index.html",
+                    notTitle: true,
+                },
+                {
+                    title: "在线轻白板",
+                    text: "一个轻量级的在线白板程序，可以进行在线绘图、标注等操作(首次加载可能较慢，请耐心等待~)",
+                    version: "(网络更新)",
+                    href: "./products/WebView.html?full=1&url=https://Roy-Jin.github.io/RuoYiBoard/",
+                    notTitle: true,
+                }
+            ];
+
+            // 项目卡片面板
+            const productsPanel = document.getElementById("products-panel");
+            for (const item of items) {
+                const product = document.createElement("div");
+                product.className = "product" + (item.inactive ? " inactive" : "");
+                const img = document.createElement("div");
+                img.className = "img";
+                const text = document.createElement("p");
+                text.className = "text";
+                text.innerText = item.title;
+                const textBox = document.createElement("div");
+                textBox.className = "textBox";
+                const textContent = document.createElement("div");
+                textContent.className = "textContent";
+                const h1 = document.createElement("p");
+                h1.className = "h1";
+                h1.innerText = item.title;
+                const span = document.createElement("span");
+                span.className = "span";
+                span.innerText = item.version;
+                const p = document.createElement("p");
+                p.className = "p";
+                p.innerText = item.text;
+                textContent.appendChild(h1);
+                textContent.appendChild(span);
+                textBox.appendChild(textContent);
+                textBox.appendChild(p);
+                product.appendChild(img);
+                img.appendChild(text);
+                product.appendChild(textBox);
+                item.href && product.addEventListener("click", (e) => {
+                    animatePlayer(e.currentTarget, 'bounce');
+                    openView(item.href, { id: item.title, notTitle: item.notTitle });
+                });
+                productsPanel.appendChild(product);
+            }
+        })();
+    })
+</script>
+
+</html>

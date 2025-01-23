@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width" />
+    <link rel="stylesheet" href="../css/base.css">
+    <script src="../js/mui.min.js"></script>
+    <script src="../js/localforage.min.js"></script>
+    <title>更多设置</title>
+    <style>
+        .mui-scroll {
+            padding: 1rem;
+            color: #333;
+        }
+
+        .container {
+            margin: auto;
+            padding: 20px;
+            max-width: 400px;
+            border-radius: 8px;
+        }
+
+        .module {
+            padding: 1rem;
+            margin-top: 20px;
+            border-radius: 1rem;
+            background: linear-gradient(to bottom right, #549e73, transparent);
+        }
+
+        .module h3 {
+            color: #eee;
+            margin-bottom: 10px;
+        }
+
+        .module-item {
+            color: #fff;
+            padding: 15px;
+            border-radius: 15px;
+            margin-bottom: 10px;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.2);
+            transition: 0.3s ease-out;
+        }
+
+        input {
+            width: 100%;
+            outline: none;
+            border: #eee dashed 1px;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 12px;
+            color: #888;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="mui-scroll-wrapper">
+        <div class="mui-scroll">
+            <div class="container">
+                <div class="module">
+                    <h3>代理设置</h3>
+                    <input type="url" class="module-item" id="proxy-value"
+                        placeholder="https://ghproxy.net/https://raw.githubusercontent.com/Roy-Jin/our-youth-app/main">
+                    <div class="module-item" id="proxy-default">恢复默认</div>
+                    <div class="module-item" id="proxy-switch">保存代理</div>
+                </div>
+                <div class="module">
+                    <h3>数据相关</h3>
+                    <div class="module-item" data-open='./upgrade.html' data-open-opt='{"id": "upgrade"}'>
+                        检查更新
+                    </div>
+                    <!-- <div class="module-item" data-open='./products/ChatBot/index.html' data-open-opt='{"id": "chatbot"}'>
+                        聊天机器人(测试中)
+                    </div> -->
+                </div>
+                <div class="footer">© 2025 «我们青春» by Roy-Jin.</div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="../js/openView.js"></script>
+<script>
+    mui.init({
+        swipeBack: true //启用右滑关闭功能
+    });
+
+    mui('.mui-scroll-wrapper').scroll(); // 初始化滚动条
+
+    const animatePlayer = (element, animationName = 'bounce') => {
+        const animations = {
+            "bounce": [
+                [
+                    { transform: 'scale(1)', },  // 起始状态
+                    { transform: 'scale(.8)', }, // 中间状态
+                    { transform: 'scale(1)', }    // 结束状态
+                ], {
+                    duration: 333,    // 动画持续时间
+                    easing: 'ease-out', // 缓动效果
+                }
+            ]
+        }
+        const animation = animations[animationName];
+        if (animation) {
+            return element.animate(animation[0], animation[1]);
+        } else {
+            return element.animate(animations.bounce[0], animations.bounce[1]);
+        }
+    };
+
+    document.getElementById('proxy-default').addEventListener('click', function () {
+        document.querySelector('#proxy-value').value = "https://ghproxy.net/https://raw.githubusercontent.com/Roy-Jin/our-youth-app/main";
+        animatePlayer(this, 'bounce');
+        document.getElementById('proxy-switch').click();
+    });
+    document.getElementById('proxy-switch').addEventListener('click', function (ele) {
+        animatePlayer(ele.target, 'bounce');
+        let url = document.querySelector('#proxy-value').value;
+        const isValidUrl = (U) => {
+            try {
+                new URL(U);
+                return true;
+            } catch (e) {
+                return false;
+            }
+        }
+        mui.plusReady(() => {
+            if (isValidUrl(url)) {
+                mui.toast('保存成功', { duration: 'long', type: 'div' });
+                plus.storage.setItem("proxy", url);
+            } else {
+                url = plus.storage.getItem('proxy') ? plus.storage.getItem('proxy') : "https://ghproxy.net/https://raw.githubusercontent.com/Roy-Jin/our-youth-app/main";
+                mui.toast('请输入正确的<br>代理URL地址!', { duration: 2000, type: "div" });
+            }
+        });
+    });
+
+    // 加载数据
+    mui.plusReady(() => {
+        document.querySelector("#proxy-value").value = plus.storage.getItem('proxy') ? plus.storage.getItem('proxy') : "https://ghproxy.net/https://raw.githubusercontent.com/Roy-Jin/our-youth-app/main";
+    })
+</script>
+
+</html>

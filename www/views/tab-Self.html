@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width" />
+	<link rel="stylesheet" href="../css/base.css">
+	<script src="../js/mui.min.js"></script>
+	<script src="../js/Users.js"></script>
+	<script src="../js/localforage.min.js"></script>
+	<title>Our Youth - Self Page</title>
+	<style>
+		body {
+			background-color: #f0f8ff;
+		}
+
+		.container {
+			margin: auto;
+			padding: 20px;
+			max-width: 400px;
+			border-radius: 8px;
+		}
+
+		.user-content {
+			color: #333;
+			padding: 20px;
+			text-align: center;
+			margin-bottom: 30px;
+			border-radius: 40px;
+			background-color: #fafafa;
+			background-size: 26px 28px;
+			background-position: -6px -6px;
+			background-image: radial-gradient(rgba(12, 12, 12, 0.1) 2px, transparent 0);
+		}
+
+		#userImg {
+			width: 66%;
+			color: #aaa;
+			aspect-ratio: 1/1;
+			margin-bottom: 1rem;
+			border-radius: 3.5rem;
+			transition: all 0.3s ease-in-out;
+			border: rgba(12, 12, 12, 0.1) 1px solid;
+		}
+
+		#userImg:active {
+			border-radius: 5px;
+			transform: scale(1.25);
+		}
+
+		#userImg.male {
+			box-shadow: rgba(0, 123, 255, 0.7) 4px 4px 20px;
+		}
+
+		#userImg.female {
+			box-shadow: rgba(255, 105, 180, 0.7) 4px 4px 20px;
+		}
+
+		#userInfo h2 {
+			margin: 10px 0;
+		}
+
+		#userInfo .info {
+			font-size: 1rem;
+			margin: 5px 0;
+			padding: 6px;
+			padding-top: .6rem;
+			border-radius: 10px;
+			color: #62a062;
+			transition: all 0.3s ease-in-out;
+			background-color: rgba(1, 1, 1, .1);
+		}
+
+		#userInfo .info span {
+			font-size: .8rem;
+			color: #8fbc8f;
+		}
+
+		#userInfo .tags {
+			display: flex;
+			margin: 1rem;
+			flex-wrap: wrap;
+			justify-content: space-evenly;
+		}
+
+		#userInfo .tags span {
+			font-size: 88%;
+			margin: 3px;
+			color: #fff;
+			padding: 4px 8px;
+			border-radius: 1rem;
+			display: inline-block;
+			background-color: #ac7a3a;
+		}
+
+		#userInfo .tags span.male {
+			background-color: lightskyblue;
+		}
+
+		#userInfo .tags span.female {
+			background-color: #dc3545;
+		}
+
+		.badge {
+			color: #fff;
+			font-size: 44%;
+			padding: 3px 4px;
+			position: absolute;
+			border-radius: 1rem;
+			display: inline-block;
+			background-color: cadetblue;
+			transform: translateY(-50%);
+		}
+
+		.module {
+			padding: 1rem;
+			margin-top: 20px;
+			border-radius: 1rem;
+			background: linear-gradient(to bottom right, #549e73, transparent);
+		}
+
+		.module h3 {
+			color: #eee;
+			margin-bottom: 10px;
+		}
+
+		.module-item {
+			color: #fff;
+			padding: 15px;
+			border-radius: 15px;
+			margin-bottom: 10px;
+			text-align: center;
+			background: rgba(0, 0, 0, 0.2);
+			transition: 0.3s ease-out;
+		}
+
+		.module-item:active {
+			transform: scale(0.8);
+			text-shadow: 0 0 10px #222;
+			box-shadow: 0 0 10px #222;
+		}
+
+		#aboutMe-module {
+			display: none;
+		}
+
+		#aboutMe-module.male {
+			background: linear-gradient(to bottom right, #63b8da, transparent)
+		}
+
+		#aboutMe-module.female {
+			background: linear-gradient(to bottom right, #e4909e, transparent)
+		}
+
+		#login-btn {
+			background: linear-gradient(to top left, #bdfffc, #20b2aa);
+		}
+
+		#logout-btn {
+			background: linear-gradient(to top left, #ffc9c9, #cc3e4c);
+			display: none;
+		}
+
+		.footer {
+			text-align: center;
+			margin-top: 30px;
+			font-size: 12px;
+			color: #888;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="mui-scroll-wrapper">
+		<div class="mui-scroll">
+			<div class="container">
+				<div class="user-content">
+					<img alt="o(^▽^)o" id="userImg">
+					<div id="userInfo">
+						<h2>你好，访客！</h2>
+						<p>ID: Visitor</p>
+						<p style="color: lightseagreen;margin-top: 1rem;font-size: x-small;">快去登录吧~<br>↓↓↓</p>
+					</div>
+				</div>
+
+				<div class="module" id="aboutMe-module">
+					<h3>关于我的</h3>
+					<div class="module-item" data-open='./collect.html' data-open-opt='{"id": "collect"}'>
+						我的收藏
+					</div>
+					<div class="module-item" data-open='./eggshell.html' data-open-opt='{"id": "eggshell"}'>
+						彩蛋进度
+					</div>
+				</div>
+
+				<div class="module">
+					<h3>其他相关</h3>
+					<div class="module-item" id="login-btn" data-open='./login.html'
+						data-open-opt='{"id": "login", "aniShow": "zoom-fade-out", "notTitle": true }'>
+						前往登录
+					</div>
+					<div class="module-item" data-open='./setting.html' data-open-opt='{"id": "setting"}'>
+						更多设置
+					</div>
+					<div class="module-item" data-open='./intro.html' data-open-opt='{"id": "intro"}'>
+						相关介绍
+					</div>
+					<div class="module-item" data-open='./privacy.html' data-open-opt='{"id": "privacy"}'>
+						隐私政策
+					</div>
+					<!-- <div class="module-item" data-open='./upgrade.html' data-open-opt='{"id": "upgrade"}'>
+						检查更新
+					</div> -->
+					<div class="module-item" id="logout-btn">退出登录</div>
+				</div>
+				<div class="footer">© 2025 «我们青春» by Roy-Jin.</div>
+			</div>
+		</div>
+	</div>
+
+	<script>
+		let loginInfo = top.plus.storage.getItem('login');
+		// loginInfo = "王晋"; // 调试用
+
+		localforage.config({
+			name: 'OY-DATA',
+			storeName: 'OurYouth',
+		}); // 初始化 localforage
+
+		// 显示用户信息
+		localforage.getItem('user').then(__DATA__ => {
+			const USERS = new USERS_CLASS(__DATA__ || _DATA_)
+			let U = USERS.getUserInfo(loginInfo); // 获取用户信息
+			if (!U) return;
+
+			// 预处理用户信息
+			U.type = U.tags.includes("教师") ? "老师" : "同学";
+
+			// 清空原有信息
+			const userInfo = document.getElementById('userInfo');
+			userInfo.innerHTML = "";
+
+			// 显示头像
+			const avatarRoot = '../data/avatar/';
+			const avatar = U.avatar || `${avatarRoot}${U.gender ? 'boy.png' : 'girl.png'}`;
+			const userImg = document.getElementById('userImg');
+			userImg.src = avatar;
+			userImg.className = U.gender ? 'male' : 'female';
+
+			// 显示用户名和身份
+			const userName = document.createElement('h2');
+			userName.innerHTML = `${U.type === "同学" ? "你好" : "您好"}, ${U.name} <span class="badge">${U.type}</span>.`;
+
+			// 标签显示栏
+			const tags = document.createElement('div');
+			tags.classList.add('tags');
+
+			// 显示用户ID
+			const userId = document.createElement('span');
+			userId.innerHTML = `${U.type === "同学" ? "#" : "教师#0"}${U.id} `;
+			tags.appendChild(userId);
+
+			// 显示用户性别
+			const userGender = document.createElement('span');
+			userGender.innerHTML = U.gender ? (U.type === "同学" ? "男生" : "先生") : (U.type === "同学" ? "女生" : "女士");
+			userGender.style.backgroundColor = U.gender ? "#28a745" : "hotpink";
+			tags.appendChild(userGender);
+
+			// 显示用户标签
+			U.tags.forEach(tag => {
+				const tagItem = document.createElement('span');
+				tagItem.className = U.gender ? "male" : "female";
+				tagItem.innerHTML = tag;
+				tags.appendChild(tagItem);
+			});
+
+			let infoElement;
+
+			// 显示用户生日
+			if (U.birth) {
+				infoElement = document.createElement('div');
+				infoElement.classList = "info";
+				infoElement.innerHTML += `生日：<span>${U.birth}</span>`;
+				userInfo.appendChild(infoElement);
+			}
+
+			// 显示用户联系方式信息
+			if (U.contact) {
+				!infoElement && (infoElement = document.createElement('div'));
+				infoElement.classList = "info";
+				infoElement.innerHTML += U.contact.map(contact => `<h4>${contact.title}：<span>${contact.value}</span></h4>`).join('');
+				userInfo.appendChild(infoElement);
+			}
+
+			// 写入到DOM中
+			infoElement && userInfo.appendChild(infoElement);
+			userInfo.insertBefore(tags, userInfo.firstChild);
+			userInfo.insertBefore(userName, userInfo.firstChild);
+
+			// 隐藏登录按钮 & 显示关于我的模块 & 显示退出登录按钮
+			document.querySelector('#login-btn').style.display = "none";
+			document.querySelector('#aboutMe-module').style.display = "block";
+			document.querySelector('#aboutMe-module').classList.add(U.gender ? "male" : "female");
+			document.querySelector('#logout-btn').style.display = "block";
+
+			// 退出登录
+			document.querySelector('#logout-btn').addEventListener('click', (e) => {
+				animatePlayer(e.currentTarget, 'bounce');
+				top.plus.device.vibrate(100); // 震动反馈
+				const logout = top.mui.confirm("<br>真的想要退出登录吗?<br>因为所有的数据保存在本地,<br>这样可能会丢失你的相关配置!<br>包括有你的收藏、彩蛋进度等等!",
+					"<h2 style='color:brown'>(⌐■_■)</h2>", ["我就要!", "不行啊~"], (e) => {
+						top.backBeforeTask.pop(); // 弹出确认框后，移除当前页面的返回任务
+						if (e.index === 0) {
+							top.plus.storage.removeItem('login');
+							top.reloadTab(); // 刷新所有TAB页面
+						};
+					}, "div");
+				top.backBeforeTask.push(() => logout.close(1));
+			});
+		});
+	</script>
+	<script src="../js/tab.base.js"></script>
+</body>
+
+</html>

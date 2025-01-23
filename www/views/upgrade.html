@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width" />
+    <link rel="stylesheet" href="../css/base.css">
+    <script src="../js/mui.min.js"></script>
+    <title>检查更新</title>
+    <style>
+        body {
+            background: linear-gradient(to bottom right, #8bffc5, #2bd857, transparent);
+        }
+
+        .mui-scroll {
+            padding: 1rem;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 75%;
+        }
+
+        .loading {
+            --color: rgba(255, 255, 255, 0.3);
+            width: 3em;
+            height: 3em;
+            margin: auto;
+            cursor: not-allowed;
+            border-radius: 50%;
+            border: 2px solid var(--color);
+            box-shadow: -10px -10px 10px #6359f8, 0px -10px 10px 0px #9c32e2, 10px -10px 10px #f36896, 10px 0 10px #ff0b0b, 10px 10px 10px 0px#ff5500, 0 10px 10px 0px #ff9500, -10px 10px 10px 0px #ffb700;
+            animation: rot55 0.7s linear infinite;
+        }
+
+        .spinnerin {
+            border: 5px solid var(--color);
+            width: 1.5em;
+            height: 1.5em;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        @keyframes rot55 {
+            to {
+                transform: rotate(360deg);
+                --color: rgba(255, 255, 255, 0.9);
+            }
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.65);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        #desc {
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        #downloadBtn {
+            outline: none;
+            border: none;
+            color: white;
+            margin: 1rem 0;
+            font-size: 1.2rem;
+            padding: .5rem 1rem;
+            border-radius: 10px;
+            background-color: #5cb85c;
+        }
+
+        #downloadBtn:active {
+            transition: all 0.2s ease-in-out;
+            background-color: #449d44;
+            transform: scale(0.8);
+        }
+
+        #updateLog {
+            margin-top: 2rem;
+        }
+
+        #updateLog h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        #updateLog h4 {
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        #updateLog p {
+            margin-bottom: 1rem;
+        }
+
+        #updateLog div {
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="mui-scroll-wrapper">
+        <div class="mui-scroll">
+            <div class="container">
+                <h1>检查更新</h1>
+                <p id="desc">正在检查更新，请稍候...</p>
+                <div class="loading" id="loading">
+                    <div class="spinnerin"></div>
+                </div>
+                <div id="updateLog">
+                    <!-- 更新日志 -->
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    mui.init({
+        swipeBack: true //启用右滑关闭功能
+    });
+
+    mui('.mui-scroll-wrapper').scroll(); // 初始化滚动条
+
+    const broadcast = new BroadcastChannel('OurYouth');
+
+    function update() {
+        const proxy = plus.storage.getItem('proxy') || "https://ghproxy.net/https://raw.githubusercontent.com/Roy-Jin/our-youth-app/main";
+        fetch(proxy + '/apk.json', { headers: { 'Cache-Control': 'no-cache' } })
+            .then(response => response.json())
+            .then(data => {
+                const newVersion = data[data.length - 1];
+                if (newVersion.code > plus.runtime.versionCode) {
+                // if (1) { // 调试模式下，强制更新
+                    // 有新版本
+                    document.getElementById('loading').style.display = 'none';
+                    document.getElementById('desc').innerHTML = '有新版本，请下载安装！';
+                    mui.toast('有新版本，<br>请下载安装！', { duration: 'long', type: 'div' });
+                    document.getElementById('desc').style.color = '#ff5722';
+                    document.getElementById('updateLog').style.color = '#2bd857 !important';
+                    displayUpdateLog(newVersion, true);
+                } else {
+                    // 已是最新版本
+                    document.getElementById('loading').remove();
+                    document.getElementById('desc').innerHTML = '已是最新版本~';
+                    document.getElementById('desc').style.color = '#ff5722';
+                    displayUpdateLog(newVersion);
+                    mui.toast('已是最新版本~', { duration: 'long', type: 'div' });
+                }
+            })
+            .catch(error => {
+                // console.log(error);
+                mui.toast(String(error));
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('desc').innerHTML =
+                    `检查更新失败！-请检查网络连接或稍后再试，
+                    --<span style="color:brown">${String(error)}</span>--
+                    若非网络原因，-请将此消息反馈给作者！`
+                        .replace(/-/g, '<br>');
+            });
+    }
+    mui.plusReady(function () {
+        update();
+    });
+
+    function displayUpdateLog(newVersion, download) {
+        const updateLog = document.getElementById('updateLog');
+        updateLog.innerHTML = `
+            <h3>版本号：${newVersion.code}${newVersion.status == "stable" ? '' : '（内测版）'}</h3>
+            ${download ? `<button onclick="downloadApp('${newVersion.download}')" id="downloadBtn">立即更新</button>` : ''}
+            <h4>版本说明：</h4><p>${newVersion.description || '暂无版本说明'}</p>
+            <h4>更新时间：</h4>${newVersion.date}
+            <div>
+                <h4>更新日志：</h4>
+                <p>${newVersion.log.replace(/\n/g, '<br>')}</p>
+            </div>
+        `;
+    }
+
+    function downloadApp(filename) {
+        broadcast.postMessage({ type: 'UpdateNow', filename });
+    }
+</script>
+
+</html>

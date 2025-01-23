@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width" />
+    <link href="../../../css/base.css" rel="stylesheet" />
+    <script src="../../../js/mui.min.js"></script>
+    <script src="../../../js/localforage.min.js"></script>
+    <link href="./style.css" rel="stylesheet">
+    <title>清语-AI</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="wrapper">
+            <div class="msgBox">
+                <!-- <div class="msg left">您好👋，我是清语，有什么可以帮助您的吗?！</div> -->
+            </div>
+        </div>
+        <div class="input-group">
+            <textarea id="input" rows="1" placeholder="你想了解什么?"></textarea>
+            <span class="btns">
+                <!-- <button class="btn" invoke="upload">上传</button> -->
+                <button class="btn" invoke="send">发送</button>
+            </span>
+        </div>
+    </div>
+</body>
+
+<script>
+    mui.init({
+        swipeBack: true
+    });
+
+    mui.plusReady(() => {
+        const proxy = plus.storage.getItem('proxy') || "https://ghproxy.net/https://raw.githubusercontent.com/Roy-Jin/our-youth-app/main";
+        const muiBack = mui.back;
+        let backConfirm;
+
+        mui.back = () => {
+            if (backConfirm) {
+                backConfirm.close();
+                return;
+            }
+            plus.device.vibrate(100);// 震动反馈
+            backConfirm = mui.confirm(
+                "这并不会保存您的对话记录<br/>确定要离开吗？<br/>", '(っ °Д °;)っ', ['取消', '确定'],
+                (e) => {
+                    if (e.index === 1) {
+                        mui.later(() => muiBack(), 111);
+                    } else {
+                        backConfirm = null;
+                    }
+                }, "div")
+        }
+
+        fetch(`${proxy}/products/ChatBot/core.js`)
+            .then(response => response.text())
+            .then(text => {
+                eval(text);
+            })
+            .catch(error => {
+                mui.alert('加载核心文件失败，请检查网络连接或代理设置!', '(っ °Д °;)っ', "好吧~", () => {
+                    mui.later(() => {
+                        muiBack();
+                    }, 222);
+                }, 'div');
+                console.error(error);
+            });
+    })
+</script>
+<!-- <script src="./core.js"></script> -->
+
+</html>

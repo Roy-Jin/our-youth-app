@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width" />
+    <link rel="stylesheet" href="../css/base.css">
+    <script src="../js/mui.min.js"></script>
+    <script src="../js/openView.js"></script>
+    <script src="../js/localforage.min.js"></script>
+    <title>我的收藏</title>
+    <style>
+        .mui-scroll {
+            padding: 1rem;
+            color: #333;
+        }
+
+        .no-collect {
+            text-align: center;
+            margin-top: 6rem;
+            font-size: 1.2rem;
+            color: #aaa;
+            font-weight: bold;
+            line-height: 1.5;
+            padding: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 1rem;
+        }
+
+        #collect-list {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #collect-list .card {
+            margin: 10px;
+            min-width: 61.8%;
+            border-radius: 16px;
+            box-shadow: 0px 0px 14px -2px #bebebe;
+            transition: 0.2s ease-in-out;
+            overflow: hidden;
+        }
+
+        #collect-list .card:active {
+            transform: scale(0.8);
+        }
+
+        .card .img {
+            height: 7rem;
+            background: linear-gradient(#7980c5, #9198e5);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .card .text {
+            padding: 7px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: space-around;
+        }
+
+        .card .text .h3 {
+            font-size: medium;
+            font-weight: 600;
+            color: black;
+            text-align: center;
+        }
+
+        .card .text .p {
+            color: #999999;
+            font-size: 13px;
+            margin: 0px;
+            text-align: center;
+            padding: 5px;
+        }
+
+        .card .icon-box {
+            margin: 10px;
+            padding: 12px;
+            background-color: #7980c5;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .card .icon-box .span {
+            font-size: small;
+            font-weight: 500;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="mui-scroll-wrapper">
+        <div class="mui-scroll">
+            <div class="no-collect">
+                <h2>暂无收藏</h2>
+                <hr><br>
+                <div>
+                    当前没有收藏任何内容,<br>
+                    快去逛逛吧&nbsp;!<br><br><br>
+                    如何收藏&nbsp;?<br>
+                    长按预览页面的照片或用户头像,<br>
+                    即可将该内容收藏。
+                </div>
+            </div>
+            <div id="collect-list"></div>
+        </div>
+    </div>
+</body>
+<script>
+    mui.init({
+        swipeBack: true, //启用右滑关闭功能
+        gestureConfig: {
+            longtap: true
+        }
+    });
+
+    mui('.mui-scroll-wrapper').scroll(); // 初始化滚动条
+
+    const broadcast = new BroadcastChannel('OurYouth');
+
+    mui.plusReady(() => {
+        localforage.config({
+            name: 'OY-LOGIN-' + plus.storage.getItem('login'),
+            storeName: 'OurYouth',
+        }); // 初始化 localforage
+        broadcast.onmessage = (event) => {
+            if (event.data.type === 'updateCollections') {
+                document.querySelector('#collect-list').innerHTML = '';
+                loadCollect(localforage.getItem('Collections'));
+            }
+        }; loadCollect(localforage.getItem('Collections'));
+    });
+
+    // 加载收藏列表
+    function loadCollect(collections) {
+        collections.then((collections) => {
+            collections = collections ? collections : [];
+            collections.sort((a, b) => b.time - a.time);
+            if (collections.length > 0) {
+                const collectList = document.querySelector('#collect-list');
+                document.querySelector('.no-collect').style.display = 'none';
+                collections.forEach(item => {
+                    const card = document.createElement('div');
+                    card.classList.add('card');
+                    let [imgUrl, title, content, href] = Array(4).fill('');
+                    switch (item.type) {
+                        case 'img':
+                            imgUrl = item.data.path;
+                            // title = item.data.title;
+                            content = item.data.desc;
+                            href = `./img-detail.html?path=${item.data.path}&from=collect`;
+                            break;
+                        case 'user':
+                            imgUrl = item.data.avatar;
+                            title = `@${item.data.name}${item.data.type}`;
+                            content = `${item.data.type === "同学" ? '#' + item.data.id + '，' : ""}${item.data.tags.join('，')}`;
+                            href = `./user-detail.html?name=${item.data.name}&from=collect`;
+                            break;
+                    }
+                    card.innerHTML = `
+                        <div class="img" style="background-image: url('${imgUrl}')"></div>
+                        <div class="text">
+                            <p class="h3">${title}</p>
+                            <p class="p">${content}</p>
+                            <div class="icon-box">
+                                <p class="span">查看详情</p>
+                            </div>
+                        </div>
+                    `;
+                    // 长按删除收藏
+                    card.addEventListener('longtap', () => {
+                        mui.confirm(`确认删除该收藏?<br><small style="color: cadetblue;">${title || content}</small>`, '(⓿_⓿)?', ["点错了", "快来吧"], (e) => {
+                            if (e.index === 1) {
+                                localforage.getItem('Collections').then((Collections) => {
+                                    const slice = (text, length) => {
+                                        if (text.length > length) {
+                                            return text.slice(0, length) + "...";
+                                        }; return text;
+                                    }
+                                    Collections.splice(Collections.findIndex(collection => collection.time === item.time), 1);
+                                    localforage.setItem('Collections', Collections).then(() => {
+                                        mui.toast(`已将 “${slice(title || content, 6)}”\n从你的收藏中移除!`);
+                                        document.querySelector('#collect-list').innerHTML = '';
+                                        loadCollect(localforage.getItem('Collections'));
+                                    });
+                                });
+                            }
+                        }, "div")
+                    });
+                    // 点击打开详情页
+                    card.addEventListener('tap', (e) => {
+                        openView(href, { aniShow: "zoom-fade-out" });
+                    });
+                    collectList.appendChild(card);
+                });
+            } else { document.querySelector('.no-collect').style.display = 'block'; } // 没有收藏时显示提示
+        });
+    }
+</script>
+
+</html>
