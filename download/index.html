@@ -107,6 +107,7 @@
             width: 6rem;
             height: auto;
             border-radius: 1rem;
+            -webkit-user-drag: none;
             background-color: #4387d4;
             transition: width .3s ease-in-out, transform 0s;
         }
@@ -136,7 +137,7 @@
         <div class="mui-scroll">
             <h1>下载</h1>
             <div class="card">
-                <h2>APP 信息</h2>
+                <h2>「我们青春」APP</h2>
                 <div class="img-box">
                     <img src="./icon-3.jpg" alt="LOGO" style="width: 40%">
                 </div>
@@ -145,15 +146,14 @@
                     <p id="app_code">获取失败</p>
                 </div>
                 <div class="inners">
-                    <h3>描述</h3>
+                    <h3>说明</h3>
                     <p id="app_description">获取失败</p>
                 </div>
                 <div class="inners">
                     <h3>日志</h3>
-                    <p id="app_log" style="text-indent: unset;padding-left: 2em;">
-                        获取失败</p>
+                    <p id="app_log" style="text-indent: unset;padding-left: 2em;">获取失败</p>
                 </div>
-                <button id="downloadButton">下载并安装</button>
+                <button id="downloadButton">下载<small style="color: #dbfffa;">（仅安卓）</small></button>
             </div>
             <h1>介绍</h1>
 
@@ -215,7 +215,7 @@
             const isQQ = () => /qq/.test(navigator.userAgent.toLowerCase()) && !/mqqbrowser/.test(navigator.userAgent.toLowerCase());
 
             if (isWeChat() || isQQ()) {
-                browserOpened = () => mui.alert('<span style="color:brown;">请在浏览器中打开本链接！</span><br><small>(由于受到微信、QQ等内置浏览器的限制，下载功能暂时无法使用，请在右上角菜单中选择“在浏览器中打开”，然后才能进行下载操作！)</small>', '(っ °Д °;)っ', '确定');
+                browserOpened = () => mui.alert('<span style="color:brown;">请在浏览器中打开本网页！</span><br><small>(由于受到微信、QQ等内置浏览器的限制，下载功能暂时无法使用，请在右上角菜单中选择“在浏览器中打开”，然后才能进行下载操作！)</small>', 'o(TヘTo)', '确定');
                 browserOpened();
             }
         }; browserOpened();
@@ -237,7 +237,7 @@
                 console.error(error);
             });
 
-        document.getElementById("downloadButton").addEventListener("tap", () => {
+        const downloadButtonEvents = () => {
             browserOpened();
             const downloadPath = document.getElementById("downloadButton").getAttribute("data-download-path");
             if (downloadPath) {
@@ -245,42 +245,41 @@
             } else {
                 mui.alert('暂无下载地址，请联系作者', '错误', '确定');
             }
+        };
+        const linksEvents = () => mui.confirm('请选择任意一种方式', '提示', ['个人网站', 'Gitee', 'GitHub', '取消'], (e) => {
+            if (e.index === 0) {
+                mui.openWindow({
+                    url: 'http://r-j.pages.dev',
+                    id: 'personal-website'
+                });
+            } else if (e.index === 1) {
+                mui.openWindow({
+                    url: 'https://gitee.com/Roy-Jin',
+                    id: 'gitee'
+                });
+            } else if (e.index === 2) {
+                mui.openWindow({
+                    url: 'https://github.com/Roy-Jin',
+                    id: 'github'
+                });
+            }
+        });
+        const contactEvents = () => mui.confirm('请选择任意一种方式', '提示', ['QQ', '邮箱', '取消'], (e) => {
+            if (e.index === 0) {
+                const QQID = ["724011786", "(🕷🕷🕷)"]
+                mui.confirm('是否要复制这个QQ号?', QQID.join(""), ['不要', '复制'], (e) => { e.index === 1 && ClipboardJS.copy(QQID[0]) });
+            } else if (e.index === 1) {
+                mui.confirm('是否要复制这个邮箱地址?', "JinRoy@outlook.com", ['不要', '复制'], (e) => { e.index === 1 && ClipboardJS.copy("JinRoy@outlook.com") });
+                window.open("mailto:JinRoy@outlook.com");
+            }
         });
 
-
-
-        document.getElementById("links").addEventListener("tap", () => {
-            mui.confirm('请选择任意一种方式', '提示', ['个人网站', 'Gitee', 'GitHub', '取消'], (e) => {
-                if (e.index === 0) {
-                    mui.openWindow({
-                        url: 'http://r-j.pages.dev',
-                        id: 'personal-website'
-                    });
-                } else if (e.index === 1) {
-                    mui.openWindow({
-                        url: 'https://gitee.com/Roy-Jin',
-                        id: 'gitee'
-                    });
-                } else if (e.index === 2) {
-                    mui.openWindow({
-                        url: 'https://github.com/Roy-Jin',
-                        id: 'github'
-                    });
-                }
-            });
-        });
-
-        document.getElementById("contact").addEventListener("tap", () => {
-            mui.confirm('请选择任意一种方式', '提示', ['QQ', '邮箱', '取消'], (e) => {
-                if (e.index === 0) {
-                    const QQID = ["724011786", "(🕷🕷🕷)"]
-                    mui.confirm('是否要复制这个QQ号?', QQID.join(""), ['不要', '复制'], (e) => { e.index === 1 && ClipboardJS.copy(QQID[0]) });
-                } else if (e.index === 1) {
-                    mui.confirm('是否要复制这个邮箱地址?', "JinRoy@outlook.com", ['不要', '复制'], (e) => { e.index === 1 && ClipboardJS.copy("JinRoy@outlook.com") });
-                    window.open("mailto:JinRoy@outlook.com");
-                }
-            });
-        });
+        document.getElementById("downloadButton").addEventListener("tap", downloadButtonEvents);
+        document.getElementById("links").addEventListener("tap", linksEvents);
+        document.getElementById("contact").addEventListener("tap", contactEvents);
+        document.getElementById("downloadButton").addEventListener("longtap", downloadButtonEvents);
+        document.getElementById("links").addEventListener("longtap", linksEvents);
+        document.getElementById("contact").addEventListener("longtap", contactEvents);
     });
 </script>
 
