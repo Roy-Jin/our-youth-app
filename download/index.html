@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width" />
+    <link rel="stylesheet" href="./base.css">
+    <script src="./mui.min.js"></script>
+    <title>相关介绍</title>
+    <style>
+        .mui-scroll {
+            padding: 1rem;
+            color: #333;
+        }
+
+        h1 {
+            width: 9rem;
+            font-size: 2rem;
+            text-align: center;
+            margin: 1rem auto;
+            border-bottom: 3px solid #d4a643;
+            border-radius: 2rem;
+            color: #d4a643;
+        }
+
+        .card {
+            margin: .5rem 0;
+            padding: .5rem;
+            border-radius: 1rem;
+            transition: all .3s ease-in-out;
+            background-color: #dbfffa;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .inners {
+            display: flex;
+            padding: .5rem;
+            margin: .5rem 0;
+            border-radius: 1rem;
+            align-items: stretch;
+            background:
+                linear-gradient(to right, rgba(67, 212, 98, 0.25), transparent);
+        }
+
+        .inners h3 {
+            padding-right: 5px;
+            text-align: center;
+            writing-mode: vertical-rl;
+            border-right: 1px solid #98e795;
+        }
+
+        .inners p {
+            flex: 1;
+            padding-left: 5px;
+        }
+
+        p {
+            font-size: 1rem;
+            text-indent: 2em;
+            line-height: 1.5;
+        }
+
+        button {
+            display: block;
+            margin: 1rem auto;
+            width: 95%;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 0.25rem;
+        }
+
+        small {
+            font-size: .8rem;
+            color: #888;
+        }
+
+        ul {
+            padding: 0;
+            list-style: none;
+            margin-left: 2em;
+            color: cadetblue;
+        }
+
+        li:before {
+            content: "▣";
+            margin-right: 0.5rem;
+        }
+
+        .img-box {
+            width: 6rem;
+            width: 100%;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        img {
+            width: 6rem;
+            height: auto;
+            border-radius: 1rem;
+            background-color: #4387d4;
+            transition: width .3s ease-in-out, transform 0s;
+        }
+
+        #links {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        #links li {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 12px;
+            color: #888;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="mui-scroll-wrapper">
+        <div class="mui-scroll">
+            <h1>下载</h1>
+            <div class="card">
+                <h2>APP 信息</h2>
+                <div class="img-box">
+                    <img src="./icon-3.jpg" alt="LOGO" style="width: 40%">
+                </div>
+                <div class="inners">
+                    <h3>版本</h3>
+                    <p id="app_code">获取失败</p>
+                </div>
+                <div class="inners">
+                    <h3>描述</h3>
+                    <p id="app_description">获取失败</p>
+                </div>
+                <div class="inners">
+                    <h3>日志</h3>
+                    <p id="app_log" style="text-indent: unset;padding-left: 2em;">
+                        获取失败</p>
+                </div>
+                <button id="downloadButton">下载安装</button>
+            </div>
+            <h1>介绍</h1>
+
+            <div class="card">
+                <h2>关于本APP</h2>
+                <div class="inners">
+                    <h3>初衷</h3>
+                    <p>本应用的初衷是为了做一个类似同学录的应用程序</p>
+                </div>
+                <div class="inners">
+                    <h3>功能</h3>
+                    <p>记录同学们的联系方式、照片、个人信息等，方便日后同学们之间的联系与交流
+                    </p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>关于作者</h2>
+                <div class="img-box">
+                    <img src="http://q.qlogo.cn/headimg_dl?dst_uin=724011786&spec=640" alt="724011786(🕷🕷🕷)">
+                </div>
+                <p>
+                    一名热爱学习的学生、热爱编程的程序员、热爱分享的开源爱好者<small style="font-size: .5em;"><s>（本APP不开源）</s></small>
+                </p>
+                <ul id="links">
+                    <li>个人网站</li>
+                    <li>GitHub</li>
+                    <li>Gitee</li>
+                    <li>......</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2>发现问题?</h2>
+                <p>如果你有任何疑问或建议，都可以告诉我，我会尽力为你解答：</p>
+                <ul id="contact">
+                    <li>QQ：724011786(🕷🕷🕷)</li>
+                    <li>邮箱：JinRoy@outlook.com</li>
+                </ul>
+            </div>
+
+            <div class="footer">© 2025 «我们青春» by Roy-Jin.</div>
+        </div>
+    </div>
+</body>
+
+<script>
+    mui.init({
+        gestureConfig: {
+            longtap: true
+        }
+    });
+
+    mui('.mui-scroll-wrapper').scroll(); // 初始化滚动条
+
+    mui.ready(() => {
+        fetch('/apk.json')
+            .then(response => response.json())
+            .then(data => {
+                for (let i = data.length - 1; i >= 0; i--) {
+                    if (data[i].status === "stable") {
+                        document.getElementById("app_code").innerText = `v${data[i].code}`;
+                        document.getElementById("app_description").innerText = `${data[i].description}`;
+                        document.getElementById("app_log").innerText = `${data[i].log}`;
+                        document.getElementById("downloadButton").setAttribute("data-download-path", `/apk/${data[i].download}`);
+                        break;
+                    }
+                }
+            })
+            .catch(error => {
+                console.error(error);
+            });
+
+        document.getElementById("downloadButton").addEventListener("tap", () => {
+            const downloadPath = document.getElementById("downloadButton").getAttribute("data-download-path");
+            if (downloadPath) {
+                const isWeChat = () => /micromessenger/.test(navigator.userAgent.toLowerCase());
+                const isQQ = () => /qq/.test(navigator.userAgent.toLowerCase()) && !/mqqbrowser/.test(navigator.userAgent.toLowerCase());
+                if (isWeChat() || isQQ()) {
+                    mui.alert('<span style="color:brown;">请在浏览器中打开本链接进行下载！</span><br><small>(由于受到微信、QQ等内置浏览器的限制，下载功能暂时无法使用，请在右上角菜单中选择“在浏览器中打开”，然后再进行下载操作！)</small>', '(っ °Д °;)っ', '确定');
+                    setTimeout(() => window.open(downloadPath), 999);
+                } else window.open(downloadPath);
+            } else {
+                mui.alert('暂无下载地址，请联系作者', '错误', '确定');
+            }
+        });
+
+
+
+        document.getElementById("links").addEventListener("tap", () => {
+            mui.confirm('请选择任意一种方式', '提示', ['个人网站', 'Gitee', 'GitHub', '取消'], (e) => {
+                if (e.index === 0) {
+                    mui.openWindow({
+                        url: 'http://r-j.pages.dev',
+                        id: 'personal-website'
+                    });
+                } else if (e.index === 1) {
+                    mui.openWindow({
+                        url: 'https://gitee.com/Roy-Jin',
+                        id: 'gitee'
+                    });
+                } else if (e.index === 2) {
+                    mui.openWindow({
+                        url: 'https://github.com/Roy-Jin',
+                        id: 'github'
+                    });
+                }
+            });
+        });
+
+        document.getElementById("contact").addEventListener("tap", () => {
+            mui.confirm('请选择任意一种方式', '提示', ['QQ', '邮箱', '取消'], (e) => {
+                if (e.index === 0) {
+                    mui.alert('QQ：724011786(🕷🕷🕷)', 'QQ', '确定');
+                } else if (e.index === 1) {
+                    mui.alert('邮箱：JinRoy@outlook.com', '邮箱', '确定');
+                }
+            });
+        });
+    });
+</script>
+
+</html>

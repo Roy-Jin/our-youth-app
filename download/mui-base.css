@@ -60,7 +60,8 @@
     display: none;
     overflow: hidden;
 
-    width: 270px;
+    width: 23rem;
+    max-width: 85%;
 
     -webkit-transition-property: -webkit-transform, opacity;
     transition-property: transform, opacity;

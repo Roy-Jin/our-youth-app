@@ -4,12 +4,12 @@
 
 @font-face {
   font-family: '仓耳舒圆体';
-  src: url('../fonts/CangErShuYuanTi.ttf');
+  src: url('./fonts/CangErShuYuanTi.ttf');
 }
 
 @font-face {
     font-family: 'Pacifico';
-    src: url('../fonts/Pacifico.ttf');
+    src: url('./fonts/Pacifico.ttf');
 }
 
 html,body {
@@ -17,7 +17,7 @@ html,body {
     font-family: "仓耳舒圆体";
 }
 
-input {
+input, button, select, textarea {
     font-family: "仓耳舒圆体";
 }
 
