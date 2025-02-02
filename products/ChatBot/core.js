@@ -74,8 +74,8 @@ function sendMsg(message) {
         "response_format": {
             "type": "text"
         },
+        "temperature": 0.3,
         // "max_tokens": 1024,
-        // "temperature": 0.9,
     };
 
     let thinking = document.createElement('div');
