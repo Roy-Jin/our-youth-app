@@ -86,5 +86,13 @@
         "description": "「清语」-AI 陪你聊天~",
         "log": "- 新增「清语」-AI 陪你聊天\n(╹ڡ╹ )",
         "download": "OurYouth V2.4.5测试.APK"
+    },
+    {
+        "code": "246",
+        "status": "stable",
+        "date": "2025-02-02",
+        "description": "发布了「清语」-AI 聊天~",
+        "log": "- 修复了「清语」-AI 聊天界面的错误\n- 美化了UI页面\n- 优化了一些功能\nO(∩_∩)O",
+        "download": "OurYouth V2.4.6稳定.APK"
     }
 ]
