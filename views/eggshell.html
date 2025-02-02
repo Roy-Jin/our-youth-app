@@ -6,7 +6,7 @@
     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width" />
     <link rel="stylesheet" href="../css/base.css">
     <script src="../js/mui.min.js"></script>
-    <title>彩蛋进度</title>
+    <title>**彩蛋**</title>
     <style>
         .mui-scroll {
             padding: 1rem;
@@ -19,8 +19,9 @@
     <div class="mui-scroll-wrapper">
         <div class="mui-scroll">
             <script defer>
-                mui.toast("该页面还正在努力开发中,敬请期待吧...");
-                mui.plusReady(() => mui.back());
+                mui.alert("该页面还正在努力开发中，\n敬请期待吧...", " ", "知道了", () => {
+                    mui.later(() => mui.back(), 333);
+                }, 'div');
             </script>
         </div>
     </div>
