@@ -1,15 +1,15 @@
 /* This is the base CSS file for our Youth app */
 
-@import url('/css/mui-base.css');
+@import url('./mui-base.css');
 
 @font-face {
   font-family: '仓耳舒圆体';
-  src: url('/fonts/CangErShuYuanTi.ttf');
+  src: url('../fonts/CangErShuYuanTi.ttf');
 }
 
 @font-face {
     font-family: 'Pacifico';
-    src: url('/fonts/Pacifico.ttf');
+    src: url('../fonts/Pacifico.ttf');
 }
 
 html,body {
@@ -17,7 +17,7 @@ html,body {
     font-family: "仓耳舒圆体";
 }
 
-input, button, select, textarea {
+input {
     font-family: "仓耳舒圆体";
 }
 
@@ -27,9 +27,4 @@ input, button, select, textarea {
     box-sizing: border-box;
     user-select: none;
     -webkit-tap-highlight-color: transparent;
-}
-
-.mui-popup {
-    width: 23rem;
-    max-width: 85%;
 }

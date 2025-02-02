@@ -74,7 +74,7 @@ function sendMsg(message) {
         "response_format": {
             "type": "text"
         },
-        "temperature": 0.3,
+        // "temperature": 0.3,
         // "max_tokens": 1024,
     };
 
@@ -90,7 +90,7 @@ function sendMsg(message) {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer 9331016ec20d49f7836b369a21fd9063.G5xnp7R4xaoqVHiS'
+            'Authorization': 'Bearer 82d09b03ed1f4011ba65378eb48536f5.FiwHtXjRN046veET'
         },
         body: JSON.stringify(apiData),
     })

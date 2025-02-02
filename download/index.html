@@ -5,13 +5,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width" />
     <link rel="stylesheet" href="./base.css">
-    <script src="./mui.min.js"></script>
-    <script src="./clipboard.min.js"></script>
+    <script src="/js/mui.min.js"></script>
+    <script src="/js/clipboard.min.js"></script>
     <title>下载「我们青春」</title>
     <style>
         .mui-scroll {
             padding: 1rem;
             color: #333;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
         }
 
         h1 {
@@ -105,6 +110,7 @@
 
         img {
             width: 6rem;
+            max-width: 40%;
             height: auto;
             border-radius: 1rem;
             -webkit-user-drag: none;
@@ -135,67 +141,69 @@
 <body>
     <div class="mui-scroll-wrapper">
         <div class="mui-scroll">
-            <h1>下载</h1>
-            <div class="card">
-                <h2>「我们青春」</h2>
-                <div class="img-box">
-                    <img src="./icon-3.jpg" alt="LOGO" style="width: 40%">
+            <div class="container">
+                <h1>下载</h1>
+                <div class="card">
+                    <h2>「我们青春」</h2>
+                    <div class="img-box">
+                        <img src="/icon-3.jpg" alt="LOGO" style="width: 40%">
+                    </div>
+                    <div class="inners">
+                        <h3>版本</h3>
+                        <p id="app_code">暂无</p>
+                    </div>
+                    <div class="inners">
+                        <h3>说明</h3>
+                        <p id="app_description">暂无</p>
+                    </div>
+                    <div class="inners">
+                        <h3>日志</h3>
+                        <p id="app_log" style="text-indent: unset;padding-left: 2em;">暂无</p>
+                    </div>
+                    <button id="downloadButton">下载<small style="color: #dbfffa;">（仅安卓）</small></button>
                 </div>
-                <div class="inners">
-                    <h3>版本</h3>
-                    <p id="app_code">暂无</p>
-                </div>
-                <div class="inners">
-                    <h3>说明</h3>
-                    <p id="app_description">暂无</p>
-                </div>
-                <div class="inners">
-                    <h3>日志</h3>
-                    <p id="app_log" style="text-indent: unset;padding-left: 2em;">暂无</p>
-                </div>
-                <button id="downloadButton">下载<small style="color: #dbfffa;">（仅安卓）</small></button>
-            </div>
-            <h1>介绍</h1>
+                <h1>介绍</h1>
 
-            <div class="card">
-                <h2>关于本APP</h2>
-                <div class="inners">
-                    <h3>初衷</h3>
-                    <p>本应用的初衷是为了做一个类似同学录的应用程序</p>
+                <div class="card">
+                    <h2>关于本APP</h2>
+                    <div class="inners">
+                        <h3>初衷</h3>
+                        <p>本应用的初衷是为了做一个类似同学录的应用程序</p>
+                    </div>
+                    <div class="inners">
+                        <h3>功能</h3>
+                        <p>记录同学们的联系方式、照片、个人信息等，方便日后同学们之间的联系与交流
+                        </p>
+                    </div>
                 </div>
-                <div class="inners">
-                    <h3>功能</h3>
-                    <p>记录同学们的联系方式、照片、个人信息等，方便日后同学们之间的联系与交流
+
+                <div class="card">
+                    <h2>关于作者</h2>
+                    <div class="img-box">
+                        <img src="http://q.qlogo.cn/headimg_dl?dst_uin=724011786&spec=640" alt="724011786(🕷🕷🕷)">
+                    </div>
+                    <p>
+                        一名热爱学习的学生、热爱编程的程序员、热爱分享的开源爱好者<small style="font-size: .5em;"><s>（本APP不开源）</s></small>
                     </p>
+                    <ul id="links">
+                        <li>个人网站</li>
+                        <li>GitHub</li>
+                        <li>Gitee</li>
+                        <li>......</li>
+                    </ul>
                 </div>
-            </div>
 
-            <div class="card">
-                <h2>关于作者</h2>
-                <div class="img-box">
-                    <img src="http://q.qlogo.cn/headimg_dl?dst_uin=724011786&spec=640" alt="724011786(🕷🕷🕷)">
+                <div class="card">
+                    <h2>发现问题?</h2>
+                    <p>如果你有任何疑问或建议，都可以告诉我，我会尽力为你解答：</p>
+                    <ul id="contact">
+                        <li>QQ：724011786(🕷🕷🕷)</li>
+                        <li>邮箱：JinRoy@outlook.com</li>
+                    </ul>
                 </div>
-                <p>
-                    一名热爱学习的学生、热爱编程的程序员、热爱分享的开源爱好者<small style="font-size: .5em;"><s>（本APP不开源）</s></small>
-                </p>
-                <ul id="links">
-                    <li>个人网站</li>
-                    <li>GitHub</li>
-                    <li>Gitee</li>
-                    <li>......</li>
-                </ul>
-            </div>
 
-            <div class="card">
-                <h2>发现问题?</h2>
-                <p>如果你有任何疑问或建议，都可以告诉我，我会尽力为你解答：</p>
-                <ul id="contact">
-                    <li>QQ：724011786(🕷🕷🕷)</li>
-                    <li>邮箱：JinRoy@outlook.com</li>
-                </ul>
+                <div class="footer">© 2025 «我们青春» by Roy-Jin.</div>
             </div>
-
-            <div class="footer">© 2025 «我们青春» by Roy-Jin.</div>
         </div>
     </div>
 </body>
