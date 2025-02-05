@@ -31,9 +31,9 @@ let InvokeBtns = document.querySelectorAll('[invoke]');
         mui.plusReady(() => {
             conversationHistory.push({
                 "role": "system",
-                "content": `现在，已知用户为“${plus.storage.getItem("login") || '游客'}”,依据数据库信息，来个开场白，模板为：“您好，xx（同学|老师）~我是清语，你的…。欢迎来到…，请问有什么可以帮助您？`
+                "content": `现在，已知用户为“${localStorage.getItem("login") || '游客'}”,依据数据库信息，来个开场白，模板为：“您好，xx（同学|老师）~我是清语，你的…。欢迎来到…，请问有什么可以帮助您？`
             });
-            sendMsg({ "role": "user", "content": `你好，我是${plus.storage.getItem("login") || '游客'}!` })
+            sendMsg({ "role": "user", "content": `你好，我是${localStorage.getItem("login") || '游客'}!` })
         });
     } catch (error) {
         mui.alert(`「清语」无法获取数据库信息，<br>错误信息：<br>${error.message}<br>请及时联系管理员。`, "(⊙x⊙;)", "点我也没用~", () => { }, "div");
