@@ -94,5 +94,13 @@
         "description": "发布了「清语」-AI 聊天~",
         "log": "- 修复了「清语」-AI 聊天界面的错误\n- 美化了UI页面\n- 优化了一些功能\nO(∩_∩)O",
         "download": "OurYouth V2.4.6稳定.APK"
+    },
+    {
+        "code": "247",
+        "status": "stable",
+        "date": "2025-02-13",
+        "description": "可以自行修改个人信息啦~",
+        "log": "- 新增修改个人信息功能\n- 美化了UI页面\n- 优化登录逻辑\n- 修复了一些已知问题\n✪ ω ✪",
+        "download": "OurYouth V2.4.7稳定.APK"
     }
 ]
