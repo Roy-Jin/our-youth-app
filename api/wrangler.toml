@@ -5,3 +5,4 @@ compatibility_date = "2025-02-16"
 [[d1_databases]]
 binding = "DB"
 database_name = "ouryouth-api-db"
+database_id = "d307d925-700f-4b82-8e74-5e394c8781df"
