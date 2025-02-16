@@ -1,3 +1,6 @@
 name = "ouryouth-api"
 main = "src/index.js"
 compatibility_date = "2025-02-16"
+
+[bindings]
+DB = "ouryouth-api-db"
