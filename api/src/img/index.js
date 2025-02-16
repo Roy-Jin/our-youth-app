@@ -24,6 +24,11 @@ async function handleRequest(request, env) {
         }
 
         const { base64 } = results[0];
+
+        if (!base64) {
+            throw new Error("The picture data64 is empty!");
+        }
+
         const mimeTypeMatch = base64.match(/^data:(image\/[a-zA-Z0-9+-.]+);base64,/);
         const mimeType = mimeTypeMatch && mimeTypeMatch[1];
 
