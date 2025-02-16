@@ -1,15 +1,15 @@
 const RoutersList = [
     {
         path: '/',
-        handler: './sql/index.js'
+        handler: await import('./sql/index.js').then(module => module.default)
     },
     {
         path: '/sql',
-        handler: 'sql/index.js'
+        handler: await import('./sql/index.js').then(module => module.default)
     },
     {
         path: '/img',
-        handler: './img/index.js'
+        handler: await import('./img/index.js').then(module => module.default)
     }
 ]
 
@@ -22,9 +22,9 @@ async function router(...Params) {
     const path = url.pathname;
 
     try {
-        const router = RoutersList.find(item => path.startsWith(item.path));
+        const router = RoutersList.find(item => item.path === path);
         if (router) {
-            const { default: handler } = await import(router.handler);
+            const handler = router.handler;
             const res = await handler.handleRequest(...Params);
             return myResponse(...res);
         } else {
