@@ -39,4 +39,4 @@ async function handleRequest(request, env) {
     }
 }
 
-export default handleRequest;
+export default { handleRequest };

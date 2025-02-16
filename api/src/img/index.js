@@ -45,4 +45,4 @@ async function handleRequest(...Params) {
     }
 }
 
-export default handleRequest;
+export default { handleRequest };
