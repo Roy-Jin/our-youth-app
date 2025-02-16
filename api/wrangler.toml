@@ -1,0 +1,3 @@
+name = "ouryouth-api"
+type = "javascript"
+main = "src/index.js"
