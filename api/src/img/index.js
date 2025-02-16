@@ -38,8 +38,8 @@ async function handleRequest(request, env) {
         ]
     } catch (error) {
         return [
-            ,
-            { status: 404, statusText: error.message }
+            error.message,
+            { status: 500, statusText: error.message }
         ]
     }
 }
