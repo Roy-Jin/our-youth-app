@@ -4,8 +4,7 @@
  * @param {Object} env 环境变量
  * @returns {Array} 返回一个数组，第一个元素是响应数据，第二个元素是响应头（可选）
  */
-async function handleRequest(...Params) {
-    const [request, env] = Params;
+async function handleRequest(request, env) {
     try {
         const DB = env.DB;
         const url = new URL(request.url);
@@ -16,8 +15,8 @@ async function handleRequest(...Params) {
             throw new Error("Photo ID not provided!");
         }
 
-        const sql = "SELECT base64 FROM ? WHERE id = ?";
-        const stmt = DB.prepare(sql).bind(table || env.IMG_TABLE || "imgsdata", id);
+        const sql = `SELECT base64 FROM ${table || env.IMG_TABLE || "imgsdata"} WHERE id = ${id}`
+        const stmt = DB.prepare(sql);
         const { results } = await stmt.all();
 
         if (results.length === 0) {
