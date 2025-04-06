@@ -102,5 +102,13 @@
         "description": "可以自行修改个人信息啦~",
         "log": "- 新增修改个人信息功能\n- 美化了UI页面\n- 优化登录逻辑\n- 修复了一些已知问题\n✪ ω ✪",
         "download": "OurYouth V2.4.7稳定.APK"
+    },
+    {
+        "code": "300",
+        "status": "stable",
+        "date": "2025-04-06",
+        "description": "更新了API地址~",
+        "log": "- 修复了无法访问问题\n-更新了API地址 \no(〃＾▽＾〃)o",
+        "download": "OurYouth V3.0.0稳定.APK"
     }
 ]
